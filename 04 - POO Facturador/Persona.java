@@ -15,14 +15,6 @@ public class Persona {
         this.cedula = cedula;
     }
 
-    //Metodos
-
-    public void mostrarCliente() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Cedula: " + cedula);
-    }
-
     //Getters y Setters
 
     public String getNombre() {

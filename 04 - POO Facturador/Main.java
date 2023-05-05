@@ -48,7 +48,7 @@ public class Main {
 
 	boolean estado_definitivo = true;
 
-	Persona arreglo[] = new Persona[100];
+	Persona 4[] = new Persona[100];
 
 	Persona arreglo_2[] = new Persona[100];
 
@@ -123,7 +123,7 @@ public class Main {
 			System.out.println("Vendedores registrados: " + contador_venderores);
 
 			System.out.print("Ingrese la cedula del vendedor: ");
-			int cedula_2 = entrada.nextInt();
+			int cedula = entrada.nextInt();
 
 			estado_cedula_2 = true;
 
@@ -145,7 +145,7 @@ public class Main {
 
 				for(int i=0; i<contador_venderores; i++){
 
-					if(arreglo_2[i].getCedula() == cedula_2){
+					if(arreglo_2[i].getCedula() == cedula){
 						System.out.println("La cedula ya existe");
 						estado_definitivo = false;
 					}
@@ -158,14 +158,14 @@ public class Main {
 			}
 
 			System.out.print("Ingrese el nombre del vendedor: ");
-			String nombre_2 = cadenas.nextLine();
+			String nombre = cadenas.nextLine();
 
 			System.out.print("Ingrese el apellido del vendedor: ");
-			String apellido_2 = cadenas.nextLine();
+			String apellido = cadenas.nextLine();
 
 			// Crear un objeto cliente
 
-			Persona vendedor_regis = new Persona(nombre_2, apellido_2, cedula_2);
+			Persona vendedor_regis = new Persona(nombre, apellido, cedula);
 
 			// Guardar el objeto en el Arreglo
 
@@ -255,7 +255,6 @@ public class Main {
 
 					arreglo_total[contador_facturas] = acum_total;
 
-					acum_total = 0;
 
 					
 				}else if(opcion_productos==2){
@@ -287,7 +286,6 @@ public class Main {
 
 					int total = cantidad_lavadoras * precio_lavadora;
 
-
 					acum_total += total;
 
 					arreglo_total[contador_facturas] = acum_total;
@@ -309,10 +307,8 @@ public class Main {
 
 					arreglo_total[contador_facturas] = acum_total;
 
-					
 
 				}else if(opcion_productos==5){
-					acum_total = 0;
 					System.out.println("Gracias por su compra");
 					System.out.println("");
 					System.out.println(" ID FACTURA: " + contador_facturas);
