@@ -43,6 +43,34 @@ public class Main {
 		Factura arrayInvoices[] = new Factura[100];
 		Boolean estado_cedula = true;
 
+		// Agregando prodcutos
+
+		Producto p1 = new Producto(1, "Coca Cola", 2500);
+		Producto p2 = new Producto(2, "Pepsi", 2800);
+		Producto p3 = new Producto(3, "Fanta", 1500);
+		Producto p4 = new Producto(4, "Sprite", 2000);
+		Producto p5 = new Producto(5, "Agua", 1200);
+		Producto p6 = new Producto(6, "Jugo", 3500);
+		Producto p7 = new Producto(7, "Cerveza", 3500);
+		Producto p8 = new Producto(8, "Ron", 15000);
+		Producto p9 = new Producto(9, "Vodka", 25000);
+		Producto p10 = new Producto(10, "Tequila", 35000);
+
+		// Agregando productos a un array
+
+		Producto arrayProducts[] = new Producto[10];
+
+		arrayProducts[0] = p1;
+		arrayProducts[1] = p2;
+		arrayProducts[2] = p3;
+		arrayProducts[3] = p4;
+		arrayProducts[4] = p5;
+		arrayProducts[5] = p6;
+		arrayProducts[6] = p7;
+		arrayProducts[7] = p8;
+		arrayProducts[8] = p9;
+		arrayProducts[9] = p10;
+
 		do {
 			
 			System.out.println("==========================================");
@@ -119,45 +147,73 @@ public class Main {
 
 				arraySellers[sellerIndex] = tempSellers;
 
-				clientIndex++;
+				sellerIndex++;
 				
-
-
-
-
-
 			}else if(opcion == 3 ){
 				System.out.println("Ingrese la cedula del cliente: ");
 				int cedula_cliente = entrada.nextInt();
-
+				boolean encontrado = false;
 				for(int i=0; i<clientIndex; i++){
-					if(arrayClients[i].getCedula() == cedula_cliente){
+					if(arrayClients[i] != null && arrayClients[i].getCedula()==cedula_cliente){
 						System.out.println("Cliente encontrado: ");
 						System.out.println("Nombre: " + arrayClients[i].getNombre() + " " + arrayClients[i].getApellido() + " Cedula: " + arrayClients[i].getCedula());
-					}else{
-						System.out.println("Cliente no encontrado");
+						encontrado = true;
 						break;
 					}
 				}
+
+				if(!encontrado){
+					System.out.println("Cliente no encontrado");
+				}
+
 
 				System.out.println("Ingrese la cedula del vendedor: ");
 				int cedula_vendedor = entrada.nextInt();
 
+
+				encontrado = false;
 				for(int i=0; i<sellerIndex; i++){
-					if(arraySellers[i].getCedula() == cedula_vendedor){
+					if(arraySellers[i] != null && arraySellers[i].getCedula() == cedula_vendedor){
 						System.out.println("Vendedor encontrado: ");
 						System.out.println("Nombre: " + arraySellers[i].getNombre() + " " + arraySellers[i].getApellido() + " Cedula: " + arraySellers[i].getCedula());
-					}else{
-						System.out.println("Vendedor no encontrado");
+						encontrado = true;
 						break;
 					}
 				}
 
+				if(!encontrado){
+					System.out.println("Vendedor no encontrado");
+				}
+
+				// mostrar la lista de procductos
+
+				System.out.println();
+				System.out.println("== Lista De Productos ==");
+				for(int i=0; i<arrayProducts.length; i++){
+					System.out.println(arrayProducts[i].id+" "+arrayProducts[i].nombre+" "+arrayProducts[i].precio);
+				}
+				System.out.println("========================");
+
+			
 
 
-			}else if( opcion == 4){
-			}else if(opcion == 5){
-			}else if(opcion == 6){
+
+			}else if(opcion == 4 ){
+				System.out.println();
+				System.out.println("Esta es la lista de clientes: \n");
+				for(int i=0; i<clientIndex; i++){
+					System.out.println(arrayClients[i].getNombre()+" "+arrayClients[i].getApellido()+" Cedula: "+arrayClients[i].getCedula()+"\n");
+				}
+
+			}else if(opcion == 5 ){
+				System.out.println();
+				System.out.println("Esta es la lista de clientes: \n");
+				for(int i=0; i<sellerIndex; i++){
+					System.out.println(arraySellers[i].getNombre()+" "+arraySellers[i].getApellido()+" Cedula: "+arraySellers[i].getCedula()+"\n");
+				}
+
+
+			}else if(opcion == 6 ){
 			}
 
 		} while (opcion != 8);

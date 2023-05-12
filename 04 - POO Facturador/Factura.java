@@ -21,6 +21,19 @@ public class Factura{
         this.total = 0;
     }
 
+
+    public void listasproductos(){
+        //llenar el arreflo de productos
+        int opcion = 0;
+        int index = 0;
+
+        
+
+
+
+
+    }
+
     //Getters y Setters
     public int getId(){
         return this.id;
@@ -34,9 +47,7 @@ public class Factura{
     public Persona getVendedor(){
         return this.vendedor;
     }
-    public Producto getListaProductos(){
-        return this.listaProductos;
-    }
+
     public double getTotal(){
         return this.total;
     }
