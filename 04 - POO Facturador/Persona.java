@@ -1,19 +1,34 @@
+import java.util.Scanner;
+
 
 public class Persona {
     
     //Atributos
-
+    int cedula;
     String nombre;
     String apellido;
-    int cedula;
+    Scanner entrada;
+    Scanner cadenas;
 
     //Constructor
-
     public Persona(String nombre, String apellido, int cedula) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
+        entrada = new Scanner(System.in);
+        cadenas = new Scanner(System.in);
+
     }
+
+    //Metodos
+    public void imprimirPersona() {
+        System.out.println("  => "+cedula+" - "+nombre+" "+apellido);
+    }
+
+
+    
+
+
 
     //Getters y Setters
 
@@ -40,7 +55,5 @@ public class Persona {
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
-
-
 
 }

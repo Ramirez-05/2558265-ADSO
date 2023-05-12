@@ -1,58 +1,48 @@
+import java.util.Date;
+
 public class Factura{
 
     //Atributos
-    int total;
-    int cantidad;
-    int precio;
-    int fecha;
-
+    int id;
+    Date fecha;
+    Persona cliente;
+    Persona vendedor;
+    ItemProducto listaProductos [];
+    double total;
+    
     //Constructor
-
-    public Factura(int total, int cantidad, int precio, int fecha) {
-        this.total = total;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.fecha = fecha;
+    public Factura(int id, Persona cliente, Persona vendedor) {
+        this.id = id;
+        this.cliente = cliente;
+        this.vendedor = vendedor;
+        this.fecha = new Date();
+        ItemProducto temp [] = new ItemProducto[100];
+        listaProductos = temp;
+        this.total = 0;
     }
 
     //Getters y Setters
-
-    public int getTotal() {
+    public int getId(){
+        return this.id;
+    }
+    public Date getFecha(){
+        return this.fecha;
+    }
+    public Persona getCliente(){
+        return this.cliente;
+    }
+    public Persona getVendedor(){
+        return this.vendedor;
+    }
+    public Producto getListaProductos(){
+        return this.listaProductos;
+    }
+    public double getTotal(){
         return this.total;
     }
 
-    public int getCantidad() {
-        return this.cantidad;
+    public void imprimirCliente(){
+        this.cliente.imprimirPersona();
     }
-
-    public int getPrecio() {
-        return this.precio;
-    }
-
-    public int getFecha() {
-        return this.fecha;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
-    }
-
-
-
-
-
-
 
 }
