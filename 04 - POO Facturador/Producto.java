@@ -10,5 +10,17 @@ public class Producto{
 		this.precio = precio;
 	}	
 
+	public int getId(){
+		return this.id;
+	}
+
+	public String getNombre(){
+		return this.nombre;
+	}
+
+	public double getPrecio(){
+		return this.precio;
+	}
+	
 	
 }

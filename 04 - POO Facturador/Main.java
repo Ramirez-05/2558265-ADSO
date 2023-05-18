@@ -153,11 +153,15 @@ public class Main {
 				System.out.println("Ingrese la cedula del cliente: ");
 				int cedula_cliente = entrada.nextInt();
 				boolean encontrado = false;
+
+				int index_i = 0;
+
 				for(int i=0; i<clientIndex; i++){
 					if(arrayClients[i] != null && arrayClients[i].getCedula()==cedula_cliente){
 						System.out.println("Cliente encontrado: ");
 						System.out.println("Nombre: " + arrayClients[i].getNombre() + " " + arrayClients[i].getApellido() + " Cedula: " + arrayClients[i].getCedula());
 						encontrado = true;
+						index_i = i;
 						break;
 					}
 				}
@@ -172,11 +176,13 @@ public class Main {
 
 
 				encontrado = false;
+				int index_j = 0;
 				for(int i=0; i<sellerIndex; i++){
 					if(arraySellers[i] != null && arraySellers[i].getCedula() == cedula_vendedor){
 						System.out.println("Vendedor encontrado: ");
 						System.out.println("Nombre: " + arraySellers[i].getNombre() + " " + arraySellers[i].getApellido() + " Cedula: " + arraySellers[i].getCedula());
 						encontrado = true;
+						index_j = i;
 						break;
 					}
 				}
@@ -185,18 +191,13 @@ public class Main {
 					System.out.println("Vendedor no encontrado");
 				}
 
-				// mostrar la lista de procductos
+				Factura tempFactura = new Factura(invoiceIndex, arrayClients[index_i], arraySellers[index_j]);
 
-				System.out.println();
-				System.out.println("== Lista De Productos ==");
-				for(int i=0; i<arrayProducts.length; i++){
-					System.out.println(arrayProducts[i].id+" "+arrayProducts[i].nombre+" "+arrayProducts[i].precio);
-				}
-				System.out.println("========================");
+				tempFactura.crearItems(arrayProducts);
 
-			
+				arrayInvoices[invoiceIndex] = tempFactura;
 
-
+				invoiceIndex++;
 
 			}else if(opcion == 4 ){
 				System.out.println();
@@ -214,6 +215,11 @@ public class Main {
 
 
 			}else if(opcion == 6 ){
+				System.out.println();
+				System.out.println("Esta es la lista de facturas: \n");
+				for(int i=0; i<invoiceIndex; i++){
+					System.out.println("Numero de factura: "+ arrayInvoices[i].getId()+" Cliente: "+arrayInvoices[i].getCliente().getNombre()+" Vendedor: "+arrayInvoices[i].getVendedor().getNombre()+" Con un total de: "+arrayInvoices[i].getTotal()+"\n");
+				}
 			}
 
 		} while (opcion != 8);

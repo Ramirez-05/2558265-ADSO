@@ -11,4 +11,16 @@ public class ItemProducto{
 		this.subtotal = subtotal;
 	}
 
+	public int getId(){
+		return this.producto.getId();
+	}
+
+	public String getNombre(){
+		return this.producto.getNombre();
+	}
+
+	public double getPrecio(){
+		return this.producto.getPrecio();
+	}
+
 }
