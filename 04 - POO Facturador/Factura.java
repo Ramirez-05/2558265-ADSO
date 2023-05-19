@@ -34,10 +34,9 @@ public class Factura{
 
         do {
             System.out.println("== Lista De Productos ==");
-            for(int i=0; i<listaProductos.length; i++){
-                if(listaProductos[i] != null){
-                    System.out.println(listaProductos[i]+" "+listaProductos[i].getNombre()+" "+listaProductos[i].getPrecio());
-                }
+            for(int i=0; i<arrayProducts.length; i++){
+                System.out.println(arrayProducts[i].getId()+" "+arrayProducts[i].getNombre()+" "+arrayProducts[i].getPrecio());
+                
             }
 
             System.out.println("========================");
@@ -53,25 +52,78 @@ public class Factura{
                 System.out.println("Ingrese la cantidad que desea comprar: ");
                 int temp_cantidad = facturas.nextInt();
 
-
-                ItemProducto temo_item = new ItemProducto(arrayProducts[temp_id-1], temp_cantidad, arrayProducts[temp_id].getPrecio()*temp_cantidad);
+                ItemProducto temo_item = new ItemProducto(arrayProducts[(temp_id-1)], temp_cantidad, arrayProducts[temp_id].getPrecio()*temp_cantidad);
                 
                 listaProductos[contador_items] = temo_item;
 
-                this.total += temo_item.subtotal;
-
-                
+                this.total += temo_item.getSubtotal();
 
                 contador_items++;
 
 
+            }else{
+                System.out.println("Gracias por su compra");
             }
             
-        } while (opc!=1);
+        } while (opc!=2);
 
     }
 
+    public void imprimirDetalle(Factura[] arrayInvoices, int invoiceIndex){
+        
+        System.out.println();
+        System.out.println("Ingrese el numero de factura: ");
+        int numero_factura = facturas.nextInt();
+        boolean encontrado = false;
 
+        for(int i=0; i<invoiceIndex; i++){
+            if(arrayInvoices[i] != null && arrayInvoices[i].getId()==numero_factura){
+                System.out.println("Factura encontrada: \n");
+                System.out.println("Fecha: "+arrayInvoices[i].getFecha());
+                System.out.println(" Numero de factura: "+ arrayInvoices[i].getId());
+                System.out.println(" Cliente: "+arrayInvoices[i].getCliente().getNombre());
+                System.out.println(" Vendedor: "+arrayInvoices[i].getVendedor().getNombre());
+                System.out.println("Con un total de: "+arrayInvoices[i].getTotal());
+                encontrado = true;
+                System.out.println();
+                System.out.println("Productos comprados: \n");
+
+                for(int j=0; j<arrayInvoices[i].listaProductos.length; j++){
+                    if(arrayInvoices[i].listaProductos[j] != null){
+                        System.out.println("Producto: "+arrayInvoices[i].listaProductos[j].getNombre());
+                        System.out.println("Cantidad: "+arrayInvoices[i].listaProductos[j].getCantidad());
+                        System.out.println("Subtotal: "+arrayInvoices[i].listaProductos[j].getSubtotal());
+                        System.out.println();
+                    }
+                }
+
+                break;
+            }
+        }
+
+        if(!encontrado){
+            System.out.println("Factura no encontrada");
+        }
+
+
+
+
+    }
+
+    public void imprimirListaFacturas(){
+        System.out.println();
+        System.out.println("Lista de facturas: \n");
+        for(int i=0; i<contador_items; i++){
+            System.out.println("Factura: "+listaProductos[i].getId());
+            System.out.println("Cliente: "+listaProductos[i].getNombre());
+            System.out.println("Vendedor: "+listaProductos[i].getNombre());
+            System.out.println("Total: "+listaProductos[i].getSubtotal());
+            System.out.println();
+        }
+
+    }
+    
+    
     //Getters y Setters
     public int getId(){
         return this.id;
@@ -86,7 +138,6 @@ public class Factura{
         return this.vendedor;
     }
 
-
     public double getTotal(){
         return this.total;
     }
@@ -94,5 +145,7 @@ public class Factura{
     public void imprimirCliente(){
         this.cliente.imprimirPersona();
     }
+
+
 
 }

@@ -23,4 +23,12 @@ public class ItemProducto{
 		return this.producto.getPrecio();
 	}
 
+	public int getCantidad(){
+		return this.cantidad;
+	}
+
+	public double getSubtotal(){
+		return this.subtotal;
+	}
+
 }

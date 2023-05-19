@@ -43,9 +43,15 @@ public class Main {
 		Factura arrayInvoices[] = new Factura[100];
 		Boolean estado_cedula = true;
 
+
+		int index_i = 0;
+		int index_j = 0;
+
+
+
 		// Agregando prodcutos
 
-		Producto p1 = new Producto(1, "Coca Cola", 2500);
+		Producto p1 = new Producto(1, "Coca Cola", 2500.);
 		Producto p2 = new Producto(2, "Pepsi", 2800);
 		Producto p3 = new Producto(3, "Fanta", 1500);
 		Producto p4 = new Producto(4, "Sprite", 2000);
@@ -154,7 +160,6 @@ public class Main {
 				int cedula_cliente = entrada.nextInt();
 				boolean encontrado = false;
 
-				int index_i = 0;
 
 				for(int i=0; i<clientIndex; i++){
 					if(arrayClients[i] != null && arrayClients[i].getCedula()==cedula_cliente){
@@ -176,7 +181,8 @@ public class Main {
 
 
 				encontrado = false;
-				int index_j = 0;
+
+
 				for(int i=0; i<sellerIndex; i++){
 					if(arraySellers[i] != null && arraySellers[i].getCedula() == cedula_vendedor){
 						System.out.println("Vendedor encontrado: ");
@@ -218,8 +224,12 @@ public class Main {
 				System.out.println();
 				System.out.println("Esta es la lista de facturas: \n");
 				for(int i=0; i<invoiceIndex; i++){
-					System.out.println("Numero de factura: "+ arrayInvoices[i].getId()+" Cliente: "+arrayInvoices[i].getCliente().getNombre()+" Vendedor: "+arrayInvoices[i].getVendedor().getNombre()+" Con un total de: "+arrayInvoices[i].getTotal()+"\n");
+					System.out.println(" Numero de factura: "+ arrayInvoices[i].getId()+" Cliente: "+arrayInvoices[i].getCliente().getNombre()+" Vendedor: "+arrayInvoices[i].getVendedor().getNombre()+" Con un total de: "+arrayInvoices[i].getTotal()+"\n");
 				}
+			}else if(opcion == 7){
+				Factura tempdetalle = new Factura(invoiceIndex, arrayClients[index_i], arraySellers[index_j]);
+				tempdetalle.imprimirDetalle(arrayInvoices, invoiceIndex);
+
 			}
 
 		} while (opcion != 8);
