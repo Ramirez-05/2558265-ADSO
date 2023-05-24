@@ -110,18 +110,7 @@ public class Factura{
 
     }
 
-    public void imprimirListaFacturas(){
-        System.out.println();
-        System.out.println("Lista de facturas: \n");
-        for(int i=0; i<contador_items; i++){
-            System.out.println("Factura: "+listaProductos[i].getId());
-            System.out.println("Cliente: "+listaProductos[i].getNombre());
-            System.out.println("Vendedor: "+listaProductos[i].getNombre());
-            System.out.println("Total: "+listaProductos[i].getSubtotal());
-            System.out.println();
-        }
 
-    }
     
     
     //Getters y Setters
