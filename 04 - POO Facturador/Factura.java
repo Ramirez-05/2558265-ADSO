@@ -5,7 +5,7 @@ public class Factura{
     //Atributos
     int id;
     Date fecha;
-    Persona cliente;
+    Persona     ;
     Persona vendedor;
     ItemProducto listaProductos [];
     double total;
@@ -52,7 +52,7 @@ public class Factura{
                 System.out.println("Ingrese la cantidad que desea comprar: ");
                 int temp_cantidad = facturas.nextInt();
 
-                ItemProducto temo_item = new ItemProducto(arrayProducts[(temp_id-1)], temp_cantidad, arrayProducts[temp_id].getPrecio()*temp_cantidad);
+                ItemProducto temo_item = new ItemProducto(arrayProducts[(temp_id-1)], temp_cantidad, arrayProducts[(temp_id-1)].getPrecio()*temp_cantidad);
                 
                 listaProductos[contador_items] = temo_item;
 

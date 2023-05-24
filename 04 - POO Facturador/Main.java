@@ -124,7 +124,7 @@ public class Main {
 
 				clientIndex++;
 				
-
+				
 
 			}else if(opcion == 2 ){
 				System.out.println("Vendedores Registrados: "+sellerIndex);
