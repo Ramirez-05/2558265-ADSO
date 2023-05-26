@@ -5,7 +5,7 @@ public class Factura{
     //Atributos
     int id;
     Date fecha;
-    Persona     ;
+    Persona cliente;
     Persona vendedor;
     ItemProducto listaProductos [];
     double total;

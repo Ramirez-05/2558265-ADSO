@@ -25,11 +25,6 @@ public class Persona {
         System.out.println("  => "+cedula+" - "+nombre+" "+apellido);
     }
 
-
-    
-
-
-
     //Getters y Setters
 
     public String getNombre() {
