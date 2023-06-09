@@ -10,6 +10,18 @@ public class Factura extends JFrame {
     private Productos[] arrayProducts;
     private boolean isClient;
     private boolean isSeller;
+
+    JTextField campo_cedula;
+    JLabel campo_nombre;
+    JLabel campo_direccion;
+    JTextField campo_cd_client;
+    JLabel campo_name_client;
+    JTextField campo_ide;
+    JTextField campo_name_produc;
+    JTextField campo_cant;
+
+
+    
     
     public Factura(Persona[] arrayClient, Persona[] arraySeller, Productos[] arrayProducts){
         this.arrayClient = arrayClient;
@@ -254,6 +266,7 @@ public class Factura extends JFrame {
         restriccion.weighty = 1;
         campo_ide.setEnabled(false);
         campo_ide.setOpaque(false);
+        restriccion.insets = new Insets(0, 0, 0, 1);
         campo_ide.setBackground(new Color(0, 0, 0, 0));
         restriccion.fill = GridBagConstraints.BOTH;
         container.add(campo_ide, restriccion);
@@ -328,87 +341,114 @@ public class Factura extends JFrame {
         revalidate();
         setVisible(true);
 
-        
 
-    KeyListener eventoKey = new KeyListener() {
-        public void keyPressed(KeyEvent e) {
-        }
-
-        public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                int cedula_cliente = Integer.parseInt(campo_cedula.getText());
-                int numero_cliente = 0;
-                boolean status_cliente = false;
-
-                for (int i = 0; i < arrayClient.length; i++) {
-                    if (arrayClient[i].getCedula() == cedula_cliente) {
-                        numero_cliente = i;
-                        status_cliente = true;
-                        isClient = true;
-                        break;
-                    }else{
-                        isClient = false;
-                    }
-                }
-
-                if (status_cliente) {
-                    campo_nombre.setText(arrayClient[numero_cliente].getNombre());
-                    campo_direccion.setText(arrayClient[numero_cliente].getDireccion());
-                    campo_cd_client.requestFocus();
-
-                }
+        KeyListener eventoKeyBuscarCliente = new KeyListener() {
+            public void keyPressed(KeyEvent e) {
             }
-        }
 
-        public void keyTyped(KeyEvent e) {
-        }
-    };
-
-    campo_cedula.addKeyListener(eventoKey);
-
-    KeyListener eventoKey2 = new KeyListener() {
-        public void keyPressed(KeyEvent e) {
-        }
-
-        public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                int cedular_vendedor = Integer.parseInt(campo_cd_client.getText());
-                int numero_vendedor = 0;
-                boolean status_vendedor = false;
-
-                for (int i = 0; i < arraySeller.length; i++) {
-                    if (arraySeller[i].getCedula() == cedular_vendedor) {
-                        numero_vendedor = i;
-                        status_vendedor = true;
-                        isSeller = true;
-                        break;
-                    }else{
-                        isSeller = false;
-                    }
-                }
-                
-                if (status_vendedor) {
-                    campo_name_client.setText(arraySeller[numero_vendedor].getNombre());
-                }
-
-                if (isClient && isSeller) {
-                    campo_ide.setEnabled(true);
-                    campo_ide.setOpaque(true);
-                    campo_ide.setBackground(new Color( 255, 255, 255, 255));
-                    campo_ide.requestFocus();
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buscarCliente();
                 }
             }
 
+            public void keyTyped(KeyEvent e) {
+            }
+        };
+
+        KeyListener eventoBuscarVendedor = new KeyListener() {
+            public void keyPressed(KeyEvent e) {
+            }
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buscarVendedor();
+                }
+
+            }
+
+            public void keyTyped(KeyEvent e) {
+            }
+        };
+
+        KeyListener eventoKey3 = new KeyListener() {
+            public void keyPressed(KeyEvent e) {
+            }
+
+            public void keyReleased(KeyEvent e) {
+            }
+
+            public void keyTyped(KeyEvent e) {
+            }
+        };
+
+        campo_cedula.addKeyListener(eventoKeyBuscarCliente);
+
+        campo_cd_client.addKeyListener(eventoBuscarVendedor);
+
         }
 
-        public void keyTyped(KeyEvent e) {
+    public void buscarCliente(){
+        int cedula_cliente = Integer.parseInt(campo_cedula.getText());
+        int numero_cliente = 0;
+        boolean status_cliente = false;
+
+        for (int i = 0; i < arrayClient.length; i++) {
+            if (arrayClient[i].getCedula() == cedula_cliente) {
+                numero_cliente = i;
+                status_cliente = true;
+                isClient = true;
+                break;
+            }else{
+                isClient = false;
+            }
         }
-    };
 
-    campo_cd_client.addKeyListener(eventoKey2);
+        if (status_cliente) {
+            campo_nombre.setText(arrayClient[numero_cliente].getNombre());
+            campo_direccion.setText(arrayClient[numero_cliente].getDireccion());
+            campo_cd_client.requestFocus();
+        }else{
+            campo_nombre.setText(" ");
+            campo_direccion.setText(" ");
 
+        }
+
+        if (isClient && isSeller) {
+            campo_ide.setEnabled(true);
+            campo_ide.setOpaque(true);
+            campo_ide.setBackground(new Color( 255, 255, 255, 255));
+            campo_ide.requestFocus();
+        }
     }
 
+    public void buscarVendedor(){
+        int cedular_vendedor = Integer.parseInt(campo_cd_client.getText());
+        int numero_vendedor = 0;
+        boolean status_vendedor = false;
+
+        for (int i = 0; i < arraySeller.length; i++) {
+            if (arraySeller[i].getCedula() == cedular_vendedor) {
+                numero_vendedor = i;
+                status_vendedor = true;
+                isSeller = true;
+                break;
+            }else{
+                isSeller = false;
+            }
+        }
+        
+        if (status_vendedor) {
+            campo_name_client.setText(arraySeller[numero_vendedor].getNombre());
+        }
+
+        if (isClient && isSeller) {
+            campo_ide.setEnabled(true);
+            campo_ide.setOpaque(true);
+            campo_ide.setBackground(new Color( 255, 255, 255, 255));
+            campo_ide.requestFocus();
+        }
+    }
 }
 
 
