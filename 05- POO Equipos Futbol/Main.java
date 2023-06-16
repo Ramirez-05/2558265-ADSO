@@ -98,7 +98,7 @@ public class Main {
                 int edad = entrada.nextInt();
 
                 System.out.println();
-                System.out.println("Ingrese en la posicion que juega: ");
+                System.out.println("Ingrese en la posicion que juega: "); 
                 String posicion = cadenas.nextLine();
 
                 Boolean estado_jugador = true;
