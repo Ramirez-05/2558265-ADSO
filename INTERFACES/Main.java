@@ -37,10 +37,7 @@ public class Main{
         arrayProducts[8] = new Productos(9, "Pan", 9000);
         arrayProducts[9] = new Productos(10, "Sal", 10000);
 
-
-
-
-        Factura ventana = new Factura(arrayClient, arraySeller, arrayProducts);
+        Facturador ventana = new Facturador(arrayClient, arraySeller, arrayProducts);
 
     }
 

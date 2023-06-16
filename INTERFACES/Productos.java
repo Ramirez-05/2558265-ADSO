@@ -16,7 +16,7 @@ public class Productos {
         return this.codigo;
     }
 
-    public String getNombre() {
+    public String getNombre_producto() {
         return this.nombre;
     }
 
