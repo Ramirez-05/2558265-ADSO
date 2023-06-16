@@ -10,7 +10,7 @@ public class Facturador extends JFrame{
     private Persona[] arrayClient;
     private Persona[] arraySeller;
     private Productos[] arrayProducts;
-	private JLabel[] arraylabels = new JLabel[30];
+	private JLabel[] arraylabels = new JLabel[50];
     private boolean isClient;
     private boolean isSeller;
 	private int indexlabel;
@@ -574,16 +574,6 @@ public class Facturador extends JFrame{
 					arraylabels[indexlabel] = new JLabel(arrayProducts[indicador].getNombre_producto()+" x "+cant_producto+" => "+total);
 					arraylabels[indexlabel].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 					arraylabels[indexlabel].setPreferredSize(new Dimension(arraylabels[indexlabel].getPreferredSize().width, alturaLabel)); // Establecer tamaño fijo
-
-					restriccion.gridy = indexlabel;
-					restriccion.gridx = 0;
-					restriccion.gridheight = 1;
-					restriccion.gridwidth = 4;
-					restriccion.weighty = 1;
-					restriccion.weightx = 100;
-					restriccion.fill = GridBagConstraints.BOTH;
-					restriccion.insets = new Insets(0, 0, 0, 0);
-					arraylabels[indexlabel].setHorizontalAlignment( JLabel.RIGHT );
 
 					contenedorItems.add(arraylabels[indexlabel], restriccion);
 
