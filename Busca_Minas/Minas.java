@@ -121,13 +121,13 @@ public class Minas extends JFrame {
 		revalidate();
 		repaint();
 
-        ActionListener evento_happy = new ActionListener() {
+        ActionListener eventoReiniciar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reiniciarjuego();
             }
         };
-        btnReiniciar.addActionListener(evento_happy);
+        btnReiniciar.addActionListener(eventoReiniciar);
     }
 
     public void reiniciarjuego(){
@@ -305,11 +305,11 @@ public class Minas extends JFrame {
     }
 
     public void completarNumerosAlrededor(){
-        int limite_filas = this.tableroNumerico.length;
-        int limite_columnas = this.tableroNumerico[0].length;
+        int limit_filas = this.tableroNumerico.length;
+        int limit_colum = this.tableroNumerico[0].length;
         
-        for (int i = 0; i<limite_filas; i++) {
-            for (int j = 0; j<limite_columnas; j++) {
+        for (int i = 0; i<limit_filas; i++) {
+            for (int j = 0; j<limit_colum; j++) {
                 if(this.tableroNumerico[i][j]==0){
                     int contador = 0;
                     
@@ -321,7 +321,7 @@ public class Minas extends JFrame {
                         contador++;
                     }
                     
-                    if ( i-1>=0 && j+1<limite_columnas && this.tableroNumerico[i-1][j+1]==9 ) {
+                    if ( i-1>=0 && j+1<limit_colum && this.tableroNumerico[i-1][j+1]==9 ) {
                         contador++;
                     }
                     
@@ -329,19 +329,19 @@ public class Minas extends JFrame {
                         contador++;
                     }
                     
-                    if ( j+1<limite_columnas && this.tableroNumerico[i][j+1]==9 ) {
+                    if ( j+1<limit_colum && this.tableroNumerico[i][j+1]==9 ) {
                         contador++;
                     }
                     
-                    if ( i+1<limite_filas && j-1>=0 && this.tableroNumerico[i+1][j-1]==9 ) {
+                    if ( i+1<limit_filas && j-1>=0 && this.tableroNumerico[i+1][j-1]==9 ) {
                         contador++;
                     }
                     
-                    if ( i+1<limite_filas && this.tableroNumerico[i+1][j]==9 ) {
+                    if ( i+1<limit_filas && this.tableroNumerico[i+1][j]==9 ) {
                         contador++;
                     }
                     
-                    if ( i+1<limite_filas && j+1<limite_columnas && this.tableroNumerico[i+1][j+1]==9 ) {
+                    if ( i+1<limit_filas && j+1<limit_colum && this.tableroNumerico[i+1][j+1]==9 ) {
                         contador++;
                     }
                     
