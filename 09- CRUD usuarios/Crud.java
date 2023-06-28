@@ -16,10 +16,10 @@ public class Crud extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Color colorPersonalizado1 = new Color(0, 5, 107);
-        Color colorPersonalizado2 = new Color(146, 145, 255);
+        Color colorPersonalizado1 = new Color(0, 0, 102);
+        Color colorPersonalizado2 = new Color(153, 153, 255);
         Color colorPersonalizado3 = Color.WHITE;
-        Color colorBotones = new Color(0, 5, 159);
+        Color colorBotones = new Color(0, 0, 153);
 
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
@@ -58,6 +58,7 @@ public class Crud extends JFrame {
         btnCrearUsuario.setFont(new Font("Arial", Font.BOLD, 20));
         btnCrearUsuario.setForeground(Color.WHITE);
         btnCrearUsuario.setBackground(colorBotones);
+        btnCrearUsuario.setFocusPainted(false);
         restriccionBotones.gridy = 0;
         restriccionBotones.gridx = 0;
         restriccionBotones.gridwidth = 1;
@@ -73,6 +74,7 @@ public class Crud extends JFrame {
         btnEditarUsuario.setFont(new Font("Arial", Font.BOLD, 20));
         btnEditarUsuario.setForeground(Color.WHITE);
         btnEditarUsuario.setBackground(colorBotones);
+        btnEditarUsuario.setFocusPainted(false);
         restriccionBotones.gridy = 1;
         restriccionBotones.gridx = 0;
         restriccionBotones.gridwidth = 1;
@@ -87,6 +89,7 @@ public class Crud extends JFrame {
         btnEliminarUsuario.setFont(new Font("Arial", Font.BOLD, 20));
         btnEliminarUsuario.setForeground(Color.WHITE);
         btnEliminarUsuario.setBackground(colorBotones);
+        btnEliminarUsuario.setFocusPainted(false);
         restriccionBotones.gridy = 2;
         restriccionBotones.gridx = 0;
         restriccionBotones.gridwidth = 1;
@@ -101,6 +104,7 @@ public class Crud extends JFrame {
         btnListarUsuarios.setFont(new Font("Arial", Font.BOLD, 20));
         btnListarUsuarios.setForeground(Color.WHITE);
         btnListarUsuarios.setBackground(colorBotones);
+        btnListarUsuarios.setFocusPainted(false);
         restriccionBotones.gridy = 3;
         restriccionBotones.gridx = 0;
         restriccionBotones.gridwidth = 1;
