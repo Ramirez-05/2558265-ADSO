@@ -2,16 +2,16 @@ public class Persona{
     
     //atributos
     int id_persona;
-    int cedula;
+    String cedula;
     String nombre;
     String apellido;
-    int telefono;
+    String telefono;
     String direccion;
     String correo;
 
 
     //constructor
-    public Persona(int id_persona, int cedula, String nombre, String apellido, int telefono, String direccion, String correo){
+    public Persona(int id_persona, String cedula, String nombre, String apellido, String telefono, String direccion, String correo){
         this.id_persona = id_persona;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -24,31 +24,31 @@ public class Persona{
     //metodos
     //getters
     public int getId_persona(){
-        return id_persona;
+        return this.id_persona;
     }
 
-    public int getCedula(){
-        return cedula;
+    public String getCedula(){
+        return this.cedula;
     }
 
     public String getNombre(){
-        return nombre;
+        return this.nombre;
     }
 
     public String getApellido(){
-        return apellido;
+        return this.apellido;
     }
 
-    public int getTelefono(){
-        return telefono;
+    public String getTelefono(){
+        return this.telefono;
     }
 
     public String getDireccion(){
-        return direccion;
+        return this.direccion;
     }
 
     public String getCorreo(){
-        return correo;
+        return this.correo;
     }
 
 

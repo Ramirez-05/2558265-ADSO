@@ -1,12 +1,14 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Crud extends JFrame {
-
-    public Crud() {
+    
+    private Persona arrayPersonas[] = new Persona[100];
+    
+    public Crud(Persona arrayPersonas[]) {
+        
         initComponnets();
     }
 
@@ -114,14 +116,39 @@ public class Crud extends JFrame {
         restriccionBotones.anchor = GridBagConstraints.CENTER;
         contenedorBotones.add(btnListarUsuarios, restriccionBotones);
 
-            ActionListener eventoCrearUsuario = new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				eventoCrearuser();
-			}
-		};
+        btnCrearUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CrearUsuario crearUsuario = new CrearUsuario(arrayPersonas);
+                crearUsuario.setVisible(true);
+                dispose();
+            }
+        });
 
-        btnCrearUsuario.addActionListener(eventoCrearUsuario);
+        btnEditarUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ModificarUsuario modificarUsuario = new ModificarUsuario(arrayPersonas);
+                modificarUsuario.setVisible(true);
+                dispose();
+            }
+        });
+
+        btnEliminarUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EliminarUsuario eliminarUsuario = new EliminarUsuario(arrayPersonas);
+                eliminarUsuario.setVisible(true);
+                dispose();
+            }
+        });
+
+        btnListarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ListarUsuarios listarUsuarios = new ListarUsuarios(arrayPersonas);
+                listarUsuarios.setVisible(true);
+                dispose();
+            }
+        });
+
+
 
         panelIntermedio.add(contenedorBotones, BorderLayout.CENTER);
         contenedorPrincipal.add(panelIntermedio, BorderLayout.CENTER);
@@ -130,9 +157,6 @@ public class Crud extends JFrame {
         setVisible(true);
     }
 
-    public void eventoCrearuser() {
 
-
-    }
 
 }
