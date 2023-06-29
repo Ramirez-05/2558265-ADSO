@@ -5,26 +5,29 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class EliminarUsuario extends JFrame {
-
+    
     private Persona arrayPersonas[];
-
+    
     public EliminarUsuario(Persona arrayPersonas[]) {
         this.arrayPersonas = arrayPersonas;
         initComponents();
     }
-
+    
     private void initComponents() {
         setTitle("Usuarios");
         setSize(460, 456);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         Color colorPersonalizado1 = new Color(0, 0, 102);
         Color colorPersonalizado2 = new Color(153, 153, 255);
         Color colorPersonalizado3 = Color.WHITE;
         Color colorBotones = new Color(0, 0, 153);
-
+        
         Color letras = new Color(51, 50, 46);
+        
+        Color ColorBtnEliminar = new Color(204, 0, 0);
+        Color ColorBtnCancelar = new Color(145, 150, 144);
 
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
@@ -148,7 +151,10 @@ public class EliminarUsuario extends JFrame {
         JTextField campoNombre = new JTextField();
         campoNombre.setFont(new Font("Arial", Font.BOLD, 18));
         campoNombre.setForeground(Color.BLACK);
+        campoNombre.setBackground(ColorBtnCancelar);
         campoNombre.setPreferredSize(new Dimension(200, 32));
+        campoNombre.setEditable(false);
+        campoNombre.setEnabled(false);
         restricionesFormulario.gridy = 1;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -174,7 +180,10 @@ public class EliminarUsuario extends JFrame {
         JTextField campoApellido = new JTextField();
         campoApellido.setFont(new Font("Arial", Font.BOLD, 18));
         campoApellido.setForeground(Color.BLACK);
+        campoApellido.setBackground(ColorBtnCancelar);
         campoApellido.setPreferredSize(new Dimension(200, 32));
+        campoApellido.setEditable(false);
+        campoApellido.setEnabled(false);
         restricionesFormulario.gridy = 2;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -199,7 +208,10 @@ public class EliminarUsuario extends JFrame {
         JTextField campoTelefono = new JTextField();
         campoTelefono.setFont(new Font("Arial", Font.BOLD, 18));
         campoTelefono.setForeground(Color.BLACK);
+        campoTelefono.setBackground(ColorBtnCancelar);
         campoTelefono.setPreferredSize(new Dimension(200, 32));
+        campoTelefono.setEditable(false);
+        campoTelefono.setEnabled(false);
         restricionesFormulario.gridy = 3;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -224,7 +236,10 @@ public class EliminarUsuario extends JFrame {
         JTextField campoDireccion = new JTextField();
         campoDireccion.setFont(new Font("Arial", Font.BOLD, 18));
         campoDireccion.setForeground(Color.BLACK);
+        campoDireccion.setBackground(ColorBtnCancelar);
         campoDireccion.setPreferredSize(new Dimension(200, 32));
+        campoDireccion.setEditable(false);
+        campoDireccion.setEnabled(false);
         restricionesFormulario.gridy = 4;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -249,7 +264,10 @@ public class EliminarUsuario extends JFrame {
         JTextField campoCorreo = new JTextField();
         campoCorreo.setFont(new Font("Arial", Font.BOLD, 18));
         campoCorreo.setForeground(Color.BLACK);
+        campoCorreo.setBackground(ColorBtnCancelar);
         campoCorreo.setPreferredSize(new Dimension(200, 30));
+        campoCorreo.setEditable(false);
+        campoCorreo.setEnabled(false);
         restricionesFormulario.gridy = 5;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -268,7 +286,6 @@ public class EliminarUsuario extends JFrame {
         contenedorBotones.setBorder(new EmptyBorder(0, 0, 8, 0));
         //////////////////////////////////////////////////////////////////////////////
 
-        Color ColorBtnCancelar = new Color(145, 150, 144);
         
         JButton btnCancelar = new JButton("CANCELAR");
         btnCancelar.setBorder(new EmptyBorder(9, 0, 9, 0));
@@ -279,14 +296,16 @@ public class EliminarUsuario extends JFrame {
         btnCancelar.setFocusPainted(false);
         contenedorBotones.add(btnCancelar);
 
-        JButton btnRegistrar = new JButton("ELIMINAR");
-        btnRegistrar.setBorder(new EmptyBorder(9, 0, 9, 0));
-        btnRegistrar.setPreferredSize(new Dimension(140, 37));
-        btnRegistrar.setFont(new Font("Arial", Font.BOLD, 18));
-        btnRegistrar.setForeground(Color.WHITE);
-        btnRegistrar.setBackground(Color.RED);
-        btnRegistrar.setFocusPainted(false);
-        contenedorBotones.add(btnRegistrar);
+
+        JButton btnEliminar = new JButton("ELIMINAR");
+        btnEliminar.setBorder(new EmptyBorder(9, 0, 9, 0));
+        btnEliminar.setPreferredSize(new Dimension(140, 37));
+        btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
+        btnEliminar.setEnabled(false);
+        btnEliminar.setForeground(Color.WHITE);
+        btnEliminar.setBackground(ColorBtnEliminar);
+        btnEliminar.setFocusPainted(false);
+        contenedorBotones.add(btnEliminar);
 
         
         panelIntermedio.add(contenedorFormulario, BorderLayout.CENTER);

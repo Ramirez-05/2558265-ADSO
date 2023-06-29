@@ -28,7 +28,7 @@ public class CrearUsuario extends JFrame {
 
     private void initComponents() {
         setTitle("Usuarios");
-        setSize(357, 409);
+        setSize(357, 410);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -247,10 +247,15 @@ public class CrearUsuario extends JFrame {
         btnRegistrar.setForeground(Color.WHITE);
         btnRegistrar.setBackground(colorBotones);
         btnRegistrar.setFocusPainted(false);
+
         contenedorBotones.add(btnRegistrar);
+
         panelIntermedio.add(contenedorFormulario, BorderLayout.CENTER);
+
         panelIntermedio.add(contenedorBotones, BorderLayout.SOUTH);
+
         contenedorPrincipal.add(panelIntermedio, BorderLayout.CENTER);
+        
         add(contenedorPrincipal);
         setResizable(false);
         setVisible(true);
@@ -268,10 +273,6 @@ public class CrearUsuario extends JFrame {
                 registrarUser();
             }
         });
-
-        
-
-        
     }
 
     public void registrarUser(){

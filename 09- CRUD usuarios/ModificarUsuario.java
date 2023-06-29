@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class ModificarUsuario extends JFrame {
 
-    Persona arrayPersonas[];
+    private Persona arrayPersonas[];
 
     public ModificarUsuario(Persona arrayPersonas[]) {
         this.arrayPersonas = arrayPersonas;
@@ -15,7 +15,7 @@ public class ModificarUsuario extends JFrame {
 
     private void initComponents() {
         setTitle("Usuarios");
-        setSize(460, 456);
+        setSize(460, 459);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -153,6 +153,7 @@ public class ModificarUsuario extends JFrame {
         campoNombre.setFont(new Font("Arial", Font.BOLD, 18));
         campoNombre.setForeground(Color.BLACK);
         campoNombre.setPreferredSize(new Dimension(200, 32));
+        campoNombre.setEditable(false);
         restricionesFormulario.gridy = 1;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -179,6 +180,7 @@ public class ModificarUsuario extends JFrame {
         campoApellido.setFont(new Font("Arial", Font.BOLD, 18));
         campoApellido.setForeground(Color.BLACK);
         campoApellido.setPreferredSize(new Dimension(200, 32));
+        campoApellido.setEditable(false);
         restricionesFormulario.gridy = 2;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -204,6 +206,7 @@ public class ModificarUsuario extends JFrame {
         campoTelefono.setFont(new Font("Arial", Font.BOLD, 18));
         campoTelefono.setForeground(Color.BLACK);
         campoTelefono.setPreferredSize(new Dimension(200, 32));
+        campoTelefono.setEditable(false);
         restricionesFormulario.gridy = 3;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -229,6 +232,7 @@ public class ModificarUsuario extends JFrame {
         campoDireccion.setFont(new Font("Arial", Font.BOLD, 18));
         campoDireccion.setForeground(Color.BLACK);
         campoDireccion.setPreferredSize(new Dimension(200, 32));
+        campoDireccion.setEditable(false);
         restricionesFormulario.gridy = 4;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -254,6 +258,7 @@ public class ModificarUsuario extends JFrame {
         campoCorreo.setFont(new Font("Arial", Font.BOLD, 18));
         campoCorreo.setForeground(Color.BLACK);
         campoCorreo.setPreferredSize(new Dimension(200, 30));
+        campoCorreo.setEditable(false);
         restricionesFormulario.gridy = 5;
         restricionesFormulario.gridx = 1;
         restricionesFormulario.gridwidth = 1;
@@ -282,13 +287,14 @@ public class ModificarUsuario extends JFrame {
         btnCancelar.setFocusPainted(false);
         contenedorBotones.add(btnCancelar);
 
-        JButton btnRegistrar = new JButton("REGISTRAR");
+        JButton btnRegistrar = new JButton("MODIFICAR");
         btnRegistrar.setBorder(new EmptyBorder(9, 0, 9, 0));
         btnRegistrar.setPreferredSize(new Dimension(140, 37));
         btnRegistrar.setFont(new Font("Arial", Font.BOLD, 18));
         btnRegistrar.setForeground(Color.WHITE);
         btnRegistrar.setBackground(colorBotones);
         btnRegistrar.setFocusPainted(false);
+        btnRegistrar.setEnabled(false);
         contenedorBotones.add(btnRegistrar);
         panelIntermedio.add(contenedorFormulario, BorderLayout.CENTER);
         panelIntermedio.add(contenedorBotones, BorderLayout.SOUTH);

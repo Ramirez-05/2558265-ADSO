@@ -37,7 +37,7 @@ public class ListarUsuarios extends JFrame {
         contenedorPrincipal.setBorder(new EmptyBorder(5, 12, 12, 12));
 
         JLabel tituloPricncipal = new JLabel("LISTA USUARIOS");
-        tituloPricncipal.setBorder(new EmptyBorder(5, 65, 7, 0));
+        tituloPricncipal.setBorder(new EmptyBorder(5, 76, 7, 0));
         tituloPricncipal.setFont(new Font("Arial", Font.BOLD, 18));
         tituloPricncipal.setForeground(letras);
         contenedorPrincipal.add(tituloPricncipal, BorderLayout.NORTH);
@@ -81,14 +81,25 @@ public class ListarUsuarios extends JFrame {
 
         JPanel contenedorBotones = new JPanel(new FlowLayout());
         contenedorBotones.setBackground(colorPersonalizado2);
+        contenedorBotones.setBorder(new EmptyBorder(3, 250, 0, 0));
         contenedorPrincipal.add(contenedorBotones, BorderLayout.SOUTH);
 
+        GridBagConstraints restriccionesBusqueda = new GridBagConstraints();
+
         JButton botonVolver = new JButton("Atras");
-        botonVolver.setBackground(colorBotones);
         botonVolver.setForeground(Color.BLACK);
-        botonVolver.setFont(new Font("Arial", Font.BOLD, 14));
-        botonVolver.setBorder(new EmptyBorder(10, 30, 10, 30));
-        contenedorBotones.add(botonVolver);
+        botonVolver.setFont(new Font("Arial", Font.BOLD, 12));
+        botonVolver.setBorder(new EmptyBorder(11, 35, 11, 35));
+        contenedorBotones.add(botonVolver, restriccionesBusqueda);
+
+
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Crud ventana = new Crud(arrayPersonas);
+            }
+        });
 
 
 
