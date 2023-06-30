@@ -18,10 +18,11 @@ public class CrearUsuario extends JFrame {
 
 
     private int indicePersonasRegistradas;
+    private Crud ventanaMenu;
 
 
-
-    public CrearUsuario(Persona[] arrayPersonas, int indicePersonasRegistradas) {
+    public CrearUsuario(Crud ventanaMenu, Persona[] arrayPersonas, int indicePersonasRegistradas) {
+        this.ventanaMenu = ventanaMenu;
         this.arrayPersonas = arrayPersonas;
         this.indicePersonasRegistradas = indicePersonasRegistradas;
         initComponents();
@@ -40,6 +41,10 @@ public class CrearUsuario extends JFrame {
 
         Color letras = new Color(51, 50, 46);
 
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
+
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
         contenedorPrincipal.setBackground(colorPersonalizado3);
@@ -52,7 +57,7 @@ public class CrearUsuario extends JFrame {
         //////////////////////////////////////////////////
 
         JLabel tituloPricncipal = new JLabel("CREAR USUARIO");
-        tituloPricncipal.setBorder(new EmptyBorder(9, 0, 9, 0));
+        tituloPricncipal.setBorder(new EmptyBorder(12, 0, 9, 0));
         tituloPricncipal.setFont(new Font("Arial", Font.BOLD, 27));
         tituloPricncipal.setForeground(Color.WHITE);
         contenedorTitulo.add(tituloPricncipal);
@@ -67,7 +72,7 @@ public class CrearUsuario extends JFrame {
 
         /////////// CONTENEDOR DE FORMULARIO /////////////////
         JPanel contenedorFormulario = new JPanel();
-        contenedorFormulario.setBorder(new EmptyBorder(17,15, 0, 17));
+        contenedorFormulario.setBorder(new EmptyBorder(17,15, 0, 18));
         contenedorFormulario.setLayout(new GridBagLayout());
         contenedorFormulario.setBackground(colorPersonalizado2);
         GridBagConstraints restricionesFormulario = new GridBagConstraints();
@@ -263,8 +268,7 @@ public class CrearUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas, indicePersonasRegistradas);
-                Crud.setVisible(true);
+                ventanaMenu.setVisible(true);
                 dispose();
             }
         });
@@ -277,17 +281,33 @@ public class CrearUsuario extends JFrame {
     }
 
     public void registrarUser(){
+
+        boolean repetir = true;
+
         String cedula = campoCedula.getText();
         String nombre = campoNombre.getText();
         String apellido = campoApellido.getText();
         String telefono = campoTelefono.getText();
         String direccion = campoDireccion.getText();
         String correo = campoCorreo.getText();
+        
+        for(int i = 0; i < arrayPersonas.length; i++){
+            if(arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)){
+                campoCedula.setBorder(new LineBorder(Color.RED, 1));
+                campoCedula.setText("");
+
+                AlertaRcedula repitio = new AlertaRcedula();
+                repitio.setVisible(true);
+                
+                repetir = false;
+            }
+        }
 
         // Validar campos
             if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
                 ErrorRegistro error = new ErrorRegistro();
                 error.setVisible(true);
+
 
                 campoCedula.setBorder(new LineBorder(Color.RED, 1));
                 campoNombre.setBorder(new LineBorder(Color.RED, 1));
@@ -297,8 +317,9 @@ public class CrearUsuario extends JFrame {
                 campoCorreo.setBorder(new LineBorder(Color.RED, 1));
             }
 
-            if (indicePersonasRegistradas < arrayPersonas.length) {
-                arrayPersonas[indicePersonasRegistradas] = new Persona(indicePersonasRegistradas, cedula, nombre, apellido, telefono, direccion, correo);
+            if (indicePersonasRegistradas < arrayPersonas.length && repetir) {
+
+                arrayPersonas[indicePersonasRegistradas] = new Persona(cedula, nombre, apellido, telefono, direccion, correo);
                 indicePersonasRegistradas++;
 
                 // Limpiar campos
@@ -309,6 +330,12 @@ public class CrearUsuario extends JFrame {
                 campoDireccion.setText("");
                 campoCorreo.setText("");
 
+                this.ventanaMenu.setVisible(true);
+
+                ExitoRegistro registro = new ExitoRegistro();
+                registro.setVisible(true);
+
+                dispose();
             }
         
     }
