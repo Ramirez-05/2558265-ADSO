@@ -16,7 +16,6 @@ public class CrearUsuario extends JFrame {
 
     private Persona[] arrayPersonas;
 
-    private Dimension imgSize;
 
     private int indicePersonasRegistradas;
 
@@ -25,7 +24,6 @@ public class CrearUsuario extends JFrame {
     public CrearUsuario(Persona[] arrayPersonas, int indicePersonasRegistradas) {
         this.arrayPersonas = arrayPersonas;
         this.indicePersonasRegistradas = indicePersonasRegistradas;
-        imgSize = new Dimension(30, 30);
         initComponents();
     }
 
