@@ -92,13 +92,13 @@ public class ListarUsuarios extends JFrame {
 
         for (int i = 0; i < arrayPersonas.length; i++) {
             if (arrayPersonas[i] != null) {
-                int indexlabel = i; // Índice para asignar el JLabel al arreglo arraylabels[]
+                int indexlabel = i; 
                 arraylabels[indexlabel] = new JLabel(arrayPersonas[i].getId_persona() + " " + arrayPersonas[i].getCedula() + " - " + arrayPersonas[i].getNombre() + " " + arrayPersonas[i].getApellido());
                 arraylabels[indexlabel].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLUE));
                 arraylabels[indexlabel].setPreferredSize(new Dimension(arraylabels[indexlabel].getPreferredSize().width, alturaLabel));
 
-                GridBagConstraints restriccionPersona = new GridBagConstraints(); // Crea un nuevo objeto restriccion para cada JLabel
-                restriccionPersona.gridy = i; // Establece la coordenada y del nuevo objeto restriccion
+                GridBagConstraints restriccionPersona = new GridBagConstraints(); 
+                restriccionPersona.gridy = i; 
                 restriccionPersona.gridx = 0;
                 restriccionPersona.gridheight = 1;
                 restriccionPersona.gridwidth = 4;
@@ -107,7 +107,7 @@ public class ListarUsuarios extends JFrame {
                 restriccionPersona.fill = GridBagConstraints.BOTH;
                 restriccionPersona.insets = new Insets(0, 0, 0, 0);
 
-                contenedorItems.add(arraylabels[indexlabel], restriccionPersona); // Agrega el nuevo JLabel al contenedor
+                contenedorItems.add(arraylabels[indexlabel], restriccionPersona); 
             }
         }
 
@@ -125,6 +125,5 @@ public class ListarUsuarios extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-
 }
 

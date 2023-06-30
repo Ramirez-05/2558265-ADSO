@@ -409,6 +409,11 @@ public class EliminarUsuario extends JFrame {
                 dispose();
             }
         }
+
+        //ordenamos
+        
+
+
     }
 
 

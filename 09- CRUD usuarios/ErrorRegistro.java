@@ -43,7 +43,7 @@ public class ErrorRegistro extends JFrame {
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
         restriccion.gridy = 0;
         restriccion.gridx = 1;
-        restriccion.gridwidth = 2; // Ajusta el ancho de la celda
+        restriccion.gridwidth = 2; 
         restriccion.gridheight = 1;
         restriccion.weightx = 1;
         restriccion.weighty = 0;
@@ -53,11 +53,11 @@ public class ErrorRegistro extends JFrame {
         mensaje.setFont(new Font("Arial", Font.PLAIN, 12));
         restriccion.gridy = 1;
         restriccion.gridx = 1;
-        restriccion.gridwidth = 2; // Ajusta el ancho de la celda
+        restriccion.gridwidth = 2; 
         restriccion.gridheight = 1;
         restriccion.weightx = 1;
         restriccion.weighty = 0;
-        restriccion.insets = new Insets(0, 0, 10, 0); // Establece los márgenes
+        restriccion.insets = new Insets(0, 0, 10, 0); 
         contenedorPrincipal.add(mensaje, restriccion);
 
         JButton btnAceptar = new JButton("Aceptar");
@@ -69,12 +69,12 @@ public class ErrorRegistro extends JFrame {
         btnAceptar.setFont(new Font("Arial", Font.BOLD, 13));
         restriccion.gridy = 2;
         restriccion.gridx = 0;
-        restriccion.gridwidth = 3; // Ajusta el ancho de la celda
+        restriccion.gridwidth = 3; 
         restriccion.gridheight = 1;
         restriccion.weightx = 1;
         restriccion.weighty = 1;
-        restriccion.insets = new Insets(0, 12, 0, 0); // Establece los márgenes
-        restriccion.fill = GridBagConstraints.CENTER; // Alinear el botón al centro
+        restriccion.insets = new Insets(0, 12, 0, 0); 
+        restriccion.fill = GridBagConstraints.CENTER;
         contenedorPrincipal.add(btnAceptar, restriccion);
 
         btnAceptar.addActionListener(new ActionListener() {
