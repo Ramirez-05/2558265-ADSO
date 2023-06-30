@@ -20,6 +20,10 @@ public class EliminarPerosna extends JFrame {
 
         Color colorPersonalizado1 = new Color(0, 0, 102);
 
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
+
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel();
         contenedorPrincipal.setLayout(new GridBagLayout());

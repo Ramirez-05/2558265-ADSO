@@ -11,7 +11,10 @@ public class ListarUsuarios extends JFrame {
     private JLabel arraylabels[] = new JLabel[100];
     private int indicePerosnasRegistradas;
 
-    public ListarUsuarios(Persona arrayPersonas[], int indicePerosnasRegistradas) {
+    private Crud ventanaMenu;
+
+    public ListarUsuarios(Crud ventanaMenu, Persona arrayPersonas[], int indicePerosnasRegistradas) {
+        this.ventanaMenu = ventanaMenu;
         this.arrayPersonas = arrayPersonas;
         this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         initComponents();
@@ -25,6 +28,10 @@ public class ListarUsuarios extends JFrame {
 
         Color colorPersonalizado2 = new Color(153, 153, 255);
         Color letras = new Color(51, 50, 46);
+
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
 
         
 
@@ -93,7 +100,7 @@ public class ListarUsuarios extends JFrame {
         for (int i = 0; i < arrayPersonas.length; i++) {
             if (arrayPersonas[i] != null) {
                 int indexlabel = i; 
-                arraylabels[indexlabel] = new JLabel(arrayPersonas[i].getId_persona() + " " + arrayPersonas[i].getCedula() + " - " + arrayPersonas[i].getNombre() + " " + arrayPersonas[i].getApellido());
+                arraylabels[indexlabel] = new JLabel(i+ "  " + arrayPersonas[i].getCedula() + " - " + arrayPersonas[i].getNombre() + " " + arrayPersonas[i].getApellido());
                 arraylabels[indexlabel].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLUE));
                 arraylabels[indexlabel].setPreferredSize(new Dimension(arraylabels[indexlabel].getPreferredSize().width, alturaLabel));
 
@@ -114,9 +121,8 @@ public class ListarUsuarios extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ventanaMenu.setVisible(true);
                 dispose();
-                Crud ventana = new Crud(arrayPersonas, indicePerosnasRegistradas);
-                ventana.setVisible(true);
             }
         });
 
@@ -125,5 +131,6 @@ public class ListarUsuarios extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+
 }
 

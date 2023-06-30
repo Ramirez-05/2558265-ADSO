@@ -21,6 +21,9 @@ public class Crud extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
         Color colorPersonalizado1 = new Color(0, 0, 102);
         Color colorPersonalizado2 = new Color(153, 153, 255);
         Color colorPersonalizado3 = Color.WHITE;
@@ -119,35 +122,37 @@ public class Crud extends JFrame {
         restriccionBotones.anchor = GridBagConstraints.CENTER;
         contenedorBotones.add(btnListarUsuarios, restriccionBotones);
 
+        Crud ventanaMenu = this;
+
         btnCrearUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CrearUsuario crearUsuario = new CrearUsuario(arrayPersonas,indicePerosnasRegistradas);
+                ventanaMenu.setVisible(false);
+                CrearUsuario crearUsuario = new CrearUsuario( ventanaMenu, arrayPersonas,indicePerosnasRegistradas);
                 crearUsuario.setVisible(true);
-                dispose();
             }
         });
 
         btnEditarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ModificarUsuario modificarUsuario = new ModificarUsuario(arrayPersonas,indicePerosnasRegistradas);
+                ventanaMenu.setVisible(false);
+                ModificarUsuario modificarUsuario = new ModificarUsuario(ventanaMenu, arrayPersonas,indicePerosnasRegistradas);
                 modificarUsuario.setVisible(true);
-                dispose();
             }
         });
 
         btnEliminarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EliminarUsuario eliminarUsuario = new EliminarUsuario(arrayPersonas,indicePerosnasRegistradas);
+                ventanaMenu.setVisible(false);
+                EliminarUsuario eliminarUsuario = new EliminarUsuario( ventanaMenu, arrayPersonas,indicePerosnasRegistradas);
                 eliminarUsuario.setVisible(true);
-                dispose();
             }
         });
 
         btnListarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ListarUsuarios listarUsuarios = new ListarUsuarios(arrayPersonas,indicePerosnasRegistradas);
+                ventanaMenu.setVisible(false);
+                ListarUsuarios listarUsuarios = new ListarUsuarios( ventanaMenu, arrayPersonas,indicePerosnasRegistradas);
                 listarUsuarios.setVisible(true);
-                dispose();
             }
         });
 

@@ -8,6 +8,7 @@ public class EliminarUsuario extends JFrame {
     
     private Persona arrayPersonas[];
     private int indicePerosnasRegistradas;
+    private int indiceAux;
 
     private JTextField campoCedula;
     private JTextField campoNombre;
@@ -17,10 +18,15 @@ public class EliminarUsuario extends JFrame {
     private JTextField campoCorreo;
     private JButton btnEliminar;
 
+    private Crud ventanaMenu;
+
+
     
-    public EliminarUsuario(Persona arrayPersonas[], int indicePerosnasRegistradas) {
+    public EliminarUsuario(Crud ventanaMenu, Persona arrayPersonas[], int indicePerosnasRegistradas) {
+        this.ventanaMenu = ventanaMenu;
         this.arrayPersonas = arrayPersonas;
         this.indicePerosnasRegistradas = indicePerosnasRegistradas;
+        this.indiceAux = 0;
         initComponents();
     }
     
@@ -39,6 +45,10 @@ public class EliminarUsuario extends JFrame {
         
         Color ColorBtnEliminar = new Color(204, 0, 0);
         Color ColorBtnCancelar = new Color(145, 150, 144);
+
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
 
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
@@ -324,8 +334,8 @@ public class EliminarUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
-                Crud.setVisible(true);
+                
+                ventanaMenu.setVisible(true);
                 dispose();
             }
         });
@@ -397,24 +407,30 @@ public class EliminarUsuario extends JFrame {
 
         for (int i = 0; i < arrayPersonas.length; i++) {
             if (arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)) {
+
+                indiceAux = i;
+
                 arrayPersonas[i] = null;
                 indicePerosnasRegistradas--;
-                
-                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
-                Crud.setVisible(true);
+
+                this.ventanaMenu.setVisible(true);
 
                 EliminarPerosna eliminar = new EliminarPerosna();
                 eliminar.setVisible(false);
 
                 dispose();
+
+                break;
             }
         }
 
-        //ordenamos
-        
-
-
+        for(int i=indiceAux; i<arrayPersonas.length; i++){
+            if(arrayPersonas[i] == null && arrayPersonas[i+1] == null ){
+                break;
+            }else{
+                arrayPersonas[i] = arrayPersonas[i+1];
+            }
+        }
     }
-
 
 }

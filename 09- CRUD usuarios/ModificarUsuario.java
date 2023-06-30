@@ -16,8 +16,11 @@ public class ModificarUsuario extends JFrame {
     private JTextField campoCorreo;
     private JButton btnModificar;
 
+    private Crud ventanaMenu;
 
-    public ModificarUsuario(Persona arrayPersonas[], int indicePerosnasRegistradas) {
+
+    public ModificarUsuario(Crud ventanaMenu,Persona arrayPersonas[], int indicePerosnasRegistradas) {
+        this.ventanaMenu = ventanaMenu;
         this.arrayPersonas = arrayPersonas;
         this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         initComponents();
@@ -35,6 +38,10 @@ public class ModificarUsuario extends JFrame {
         Color colorBotones = new Color(0, 0, 153);
 
         Color letras = new Color(51, 50, 46);
+
+        Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
+        setIconImage(icono_crud);
+
 
         ////////////// CONTENEDOR PRINCIPAL //////////////
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
@@ -195,7 +202,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.HORIZONTAL;
         contenedorFormulario.add(campoApellido, restricionesFormulario);
 
-        JLabel tituloTelefono = new JLabel("Telefono: ");
+        JLabel tituloTelefono = new JLabel("Teléfono: ");
         tituloTelefono.setFont(new Font("Arial", Font.BOLD, 18));
         tituloTelefono.setForeground(letras);
         restricionesFormulario.gridy = 3;
@@ -273,8 +280,6 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.HORIZONTAL;
         contenedorFormulario.add(campoCorreo, restricionesFormulario);
 
-
-
         ///////////////////////// PANEL PARA BOTONES /////////////////////////////////
         JPanel contenedorBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 10));
         contenedorBotones.setBackground(colorPersonalizado2);
@@ -313,8 +318,7 @@ public class ModificarUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
-                Crud.setVisible(true);
+                ventanaMenu.setVisible(true);
                 dispose();
             }
         });
@@ -397,9 +401,8 @@ public class ModificarUsuario extends JFrame {
                 arrayPersonas[i].setTelefono(campoTelefono.getText());
                 arrayPersonas[i].setDireccion(campoDireccion.getText());
                 arrayPersonas[i].setCorreo(campoCorreo.getText());
-
-                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
-                Crud.setVisible(true);
+                
+                this.ventanaMenu.setVisible(true);
 
                 ExitoModificar Exito = new ExitoModificar();
                 Exito.setVisible(true);
@@ -408,5 +411,6 @@ public class ModificarUsuario extends JFrame {
             }
         }
     }
+
 
 }
