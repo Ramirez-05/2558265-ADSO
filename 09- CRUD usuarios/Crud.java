@@ -5,9 +5,12 @@ import java.awt.event.*;
 
 public class Crud extends JFrame {
     
-    private Persona arrayPersonas[] = new Persona[100];
+    private Persona[] arrayPersonas;
+    private int indicePerosnasRegistradas;
     
-    public Crud(Persona arrayPersonas[]) {
+    public Crud(Persona arrayPersonas[], int indicePerosnasRegistradas) {
+        this.arrayPersonas = arrayPersonas;
+        this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         
         initComponnets();
     }
@@ -118,7 +121,7 @@ public class Crud extends JFrame {
 
         btnCrearUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CrearUsuario crearUsuario = new CrearUsuario(arrayPersonas);
+                CrearUsuario crearUsuario = new CrearUsuario(arrayPersonas,indicePerosnasRegistradas);
                 crearUsuario.setVisible(true);
                 dispose();
             }
@@ -126,7 +129,7 @@ public class Crud extends JFrame {
 
         btnEditarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ModificarUsuario modificarUsuario = new ModificarUsuario(arrayPersonas);
+                ModificarUsuario modificarUsuario = new ModificarUsuario(arrayPersonas,indicePerosnasRegistradas);
                 modificarUsuario.setVisible(true);
                 dispose();
             }
@@ -134,7 +137,7 @@ public class Crud extends JFrame {
 
         btnEliminarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EliminarUsuario eliminarUsuario = new EliminarUsuario(arrayPersonas);
+                EliminarUsuario eliminarUsuario = new EliminarUsuario(arrayPersonas,indicePerosnasRegistradas);
                 eliminarUsuario.setVisible(true);
                 dispose();
             }
@@ -142,7 +145,7 @@ public class Crud extends JFrame {
 
         btnListarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ListarUsuarios listarUsuarios = new ListarUsuarios(arrayPersonas);
+                ListarUsuarios listarUsuarios = new ListarUsuarios(arrayPersonas,indicePerosnasRegistradas);
                 listarUsuarios.setVisible(true);
                 dispose();
             }

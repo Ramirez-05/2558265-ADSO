@@ -1,15 +1,25 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 import java.awt.event.*;
 
 public class ModificarUsuario extends JFrame {
 
     private Persona arrayPersonas[];
+    private int indicePerosnasRegistradas;
 
-    public ModificarUsuario(Persona arrayPersonas[]) {
+    private JTextField campoCedula;
+    private JTextField campoNombre;
+    private JTextField campoApellido;
+    private JTextField campoTelefono;
+    private JTextField campoDireccion;
+    private JTextField campoCorreo;
+    private JButton btnModificar;
+
+
+    public ModificarUsuario(Persona arrayPersonas[], int indicePerosnasRegistradas) {
         this.arrayPersonas = arrayPersonas;
+        this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         initComponents();
     }
 
@@ -72,7 +82,7 @@ public class ModificarUsuario extends JFrame {
         restriccionesBusqueda.insets = new Insets(0, 0, 6, 0);
         panelBusqueda.add(tituloCedula, restriccionesBusqueda);
 
-        JTextField campoCedula = new JTextField();
+        campoCedula = new JTextField();
         campoCedula.setFont(new Font("Arial", Font.BOLD, 18));
         campoCedula.setForeground(Color.BLACK);
         campoCedula.setPreferredSize(new Dimension(170, 30));
@@ -104,27 +114,22 @@ public class ModificarUsuario extends JFrame {
 
         panelIntermedio.add(panelBusqueda, BorderLayout.NORTH);
 
-    JLabel tituloExtra = new JLabel("Usuario encontrado: ");
-    tituloExtra.setForeground(letras);
-    tituloExtra.setFont(new Font("Arial", Font.PLAIN, 14));
-
-
-    tituloExtra.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createMatteBorder(1, 0, 0, 0, Color.WHITE), // Borde superior
-        BorderFactory.createEmptyBorder(18, 3, 3, 3)  // Relleno interno
-    ));
-
-
-    restriccionesBusqueda.gridy = 1;
-    restriccionesBusqueda.gridx = 0;
-    restriccionesBusqueda.gridwidth = 6;
-    restriccionesBusqueda.gridheight = 1;
-    restriccionesBusqueda.weightx = 1;
-    restriccionesBusqueda.weighty = 0;
-    restriccionesBusqueda.fill = GridBagConstraints.BOTH;
-    restriccionesBusqueda.insets = new Insets(3, 0, 3, 0);
-
-    panelBusqueda.add(tituloExtra, restriccionesBusqueda);
+        JLabel tituloExtra = new JLabel("Usuario encontrado: ");
+        tituloExtra.setForeground(letras);
+        tituloExtra.setFont(new Font("Arial", Font.PLAIN, 14));
+        tituloExtra.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.WHITE), // Borde superior
+            BorderFactory.createEmptyBorder(18, 3, 3, 3)  // Relleno interno
+        ));
+        restriccionesBusqueda.gridy = 1;
+        restriccionesBusqueda.gridx = 0;
+        restriccionesBusqueda.gridwidth = 6;
+        restriccionesBusqueda.gridheight = 1;
+        restriccionesBusqueda.weightx = 1;
+        restriccionesBusqueda.weighty = 0;
+        restriccionesBusqueda.fill = GridBagConstraints.BOTH;
+        restriccionesBusqueda.insets = new Insets(3, 0, 3, 0);
+        panelBusqueda.add(tituloExtra, restriccionesBusqueda);
 
 
 
@@ -149,7 +154,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.insets = new Insets(0, 0, 6, 0);
         contenedorFormulario.add(tituloNombre, restricionesFormulario);
 
-        JTextField campoNombre = new JTextField();
+        campoNombre = new JTextField();
         campoNombre.setFont(new Font("Arial", Font.BOLD, 18));
         campoNombre.setForeground(Color.BLACK);
         campoNombre.setPreferredSize(new Dimension(200, 32));
@@ -176,7 +181,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloApellido, restricionesFormulario);
 
-        JTextField campoApellido = new JTextField();
+        campoApellido = new JTextField();
         campoApellido.setFont(new Font("Arial", Font.BOLD, 18));
         campoApellido.setForeground(Color.BLACK);
         campoApellido.setPreferredSize(new Dimension(200, 32));
@@ -202,7 +207,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloTelefono, restricionesFormulario);
 
-        JTextField campoTelefono = new JTextField();
+        campoTelefono = new JTextField();
         campoTelefono.setFont(new Font("Arial", Font.BOLD, 18));
         campoTelefono.setForeground(Color.BLACK);
         campoTelefono.setPreferredSize(new Dimension(200, 32));
@@ -228,7 +233,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloDireccion, restricionesFormulario);
 
-        JTextField campoDireccion = new JTextField();
+        campoDireccion = new JTextField();
         campoDireccion.setFont(new Font("Arial", Font.BOLD, 18));
         campoDireccion.setForeground(Color.BLACK);
         campoDireccion.setPreferredSize(new Dimension(200, 32));
@@ -254,7 +259,7 @@ public class ModificarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloCorreo, restricionesFormulario);
 
-        JTextField campoCorreo = new JTextField();
+        campoCorreo = new JTextField();
         campoCorreo.setFont(new Font("Arial", Font.BOLD, 18));
         campoCorreo.setForeground(Color.BLACK);
         campoCorreo.setPreferredSize(new Dimension(200, 30));
@@ -287,15 +292,18 @@ public class ModificarUsuario extends JFrame {
         btnCancelar.setFocusPainted(false);
         contenedorBotones.add(btnCancelar);
 
-        JButton btnRegistrar = new JButton("MODIFICAR");
-        btnRegistrar.setBorder(new EmptyBorder(9, 0, 9, 0));
-        btnRegistrar.setPreferredSize(new Dimension(140, 37));
-        btnRegistrar.setFont(new Font("Arial", Font.BOLD, 18));
-        btnRegistrar.setForeground(Color.WHITE);
-        btnRegistrar.setBackground(colorBotones);
-        btnRegistrar.setFocusPainted(false);
-        btnRegistrar.setEnabled(false);
-        contenedorBotones.add(btnRegistrar);
+        btnModificar = new JButton("MODIFICAR");
+        btnModificar.setBorder(new EmptyBorder(9, 0, 9, 0));
+        btnModificar.setPreferredSize(new Dimension(140, 37));
+        btnModificar.setFont(new Font("Arial", Font.BOLD, 18));
+        btnModificar.setForeground(Color.WHITE);
+        btnModificar.setBackground(colorBotones);
+        btnModificar.setFocusPainted(false);
+        btnModificar.setEnabled(false);
+        contenedorBotones.add(btnModificar);
+
+
+
         panelIntermedio.add(contenedorFormulario, BorderLayout.CENTER);
         panelIntermedio.add(contenedorBotones, BorderLayout.SOUTH);
         contenedorPrincipal.add(panelIntermedio, BorderLayout.CENTER);
@@ -305,18 +313,100 @@ public class ModificarUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas);
+                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
                 Crud.setVisible(true);
                 dispose();
             }
         });
 
+        KeyListener eventoBuscarPersona = new KeyListener() { 
+			public void keyPressed(KeyEvent e) {
+			}
+
+			public void keyReleased(KeyEvent e) {
+				buscarPersona();
+                System.out.println("Buscando persona...");
+			}
+
+			public void keyTyped(KeyEvent e) {
+			}
+		};
+
+        campoCedula.addKeyListener(eventoBuscarPersona);
+
+        ActionListener eventoModificarPersona = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				modificarPersona();
+			}
+		};
+
+        btnModificar.addActionListener(eventoModificarPersona);
+
+
         
     }
 
-    public void eventoCrearuser() {
-        // Agrega aquí la lógica para el evento de crear usuario
+    public void buscarPersona() {
+        String cedula = campoCedula.getText();
+
+        for (int i = 0; i < arrayPersonas.length; i++) {
+            if (arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)) {
+
+                campoNombre.setEditable(true);
+                campoApellido.setEditable(true);
+                campoTelefono.setEditable(true);
+                campoDireccion.setEditable(true);
+                campoCorreo.setEditable(true);
+
+                campoNombre.setText(arrayPersonas[i].getNombre());
+                campoApellido.setText(arrayPersonas[i].getApellido());
+                campoTelefono.setText(arrayPersonas[i].getTelefono());
+                campoDireccion.setText(arrayPersonas[i].getDireccion());
+                campoCorreo.setText(arrayPersonas[i].getCorreo());
+
+                btnModificar.setEnabled(true);
+
+            }else if(cedula.isEmpty()){
+                campoNombre.setEditable(false);
+                campoApellido.setEditable(false);
+                campoTelefono.setEditable(false);
+                campoDireccion.setEditable(false);
+                campoCorreo.setEditable(false);
+
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreo.setText("");
+
+                btnModificar.setEnabled(false);
+
+            }
+            
+        }
     }
 
+    public void modificarPersona(){
+        String cedula = campoCedula.getText();
+
+        for (int i = 0; i < arrayPersonas.length; i++) {
+            if (arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)) {
+                arrayPersonas[i].setNombre(campoNombre.getText());
+                arrayPersonas[i].setApellido(campoApellido.getText());
+                arrayPersonas[i].setTelefono(campoTelefono.getText());
+                arrayPersonas[i].setDireccion(campoDireccion.getText());
+                arrayPersonas[i].setCorreo(campoCorreo.getText());
+
+                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
+                Crud.setVisible(true);
+
+                ExitoModificar Exito = new ExitoModificar();
+                Exito.setVisible(true);
+
+                dispose();
+            }
+        }
+    }
 
 }

@@ -9,9 +9,11 @@ public class ListarUsuarios extends JFrame {
 
     private Persona arrayPersonas[];
     private JLabel arraylabels[] = new JLabel[100];
+    private int indicePerosnasRegistradas;
 
-    public ListarUsuarios(Persona arrayPersonas[]) {
+    public ListarUsuarios(Persona arrayPersonas[], int indicePerosnasRegistradas) {
         this.arrayPersonas = arrayPersonas;
+        this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         initComponents();
     }
 
@@ -21,10 +23,7 @@ public class ListarUsuarios extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Color colorPersonalizado1 = new Color(0, 0, 102);
         Color colorPersonalizado2 = new Color(153, 153, 255);
-        Color colorPersonalizado3 = Color.WHITE;
-        Color colorBotones = new Color(231, 239, 245);
         Color letras = new Color(51, 50, 46);
 
         
@@ -62,7 +61,6 @@ public class ListarUsuarios extends JFrame {
 			// Aplicar el borde al JLabel
 			arraylabels[i].setBorder(bordeInferior);
 
-		
 			restriccion.gridy = i;
 			restriccion.gridx = 0;
 			restriccion.gridheight = 1;
@@ -71,13 +69,13 @@ public class ListarUsuarios extends JFrame {
 			restriccion.weightx = 100;
 			restriccion.fill = GridBagConstraints.BOTH;
 			restriccion.insets = new Insets(0, 0, 0, 0);
-			arraylabels[i].setHorizontalAlignment( JLabel.RIGHT );
 
 			contenedorItems.add(arraylabels[i], restriccion);
 
 			// Establecer el tamaño preferido del JLabel
 			arraylabels[i].setPreferredSize(new Dimension(arraylabels[i].getPreferredSize().width, alturaLabel));
 		}
+
 
         JPanel contenedorBotones = new JPanel(new FlowLayout());
         contenedorBotones.setBackground(colorPersonalizado2);
@@ -92,19 +90,35 @@ public class ListarUsuarios extends JFrame {
         botonVolver.setBorder(new EmptyBorder(11, 35, 11, 35));
         contenedorBotones.add(botonVolver, restriccionesBusqueda);
 
+        for (int i = 0; i < arrayPersonas.length; i++) {
+            if (arrayPersonas[i] != null) {
+                int indexlabel = i; // Índice para asignar el JLabel al arreglo arraylabels[]
+                arraylabels[indexlabel] = new JLabel(arrayPersonas[i].getId_persona() + " " + arrayPersonas[i].getCedula() + " - " + arrayPersonas[i].getNombre() + " " + arrayPersonas[i].getApellido());
+                arraylabels[indexlabel].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLUE));
+                arraylabels[indexlabel].setPreferredSize(new Dimension(arraylabels[indexlabel].getPreferredSize().width, alturaLabel));
+
+                GridBagConstraints restriccionPersona = new GridBagConstraints(); // Crea un nuevo objeto restriccion para cada JLabel
+                restriccionPersona.gridy = i; // Establece la coordenada y del nuevo objeto restriccion
+                restriccionPersona.gridx = 0;
+                restriccionPersona.gridheight = 1;
+                restriccionPersona.gridwidth = 4;
+                restriccionPersona.weighty = 1;
+                restriccionPersona.weightx = 100;
+                restriccionPersona.fill = GridBagConstraints.BOTH;
+                restriccionPersona.insets = new Insets(0, 0, 0, 0);
+
+                contenedorItems.add(arraylabels[indexlabel], restriccionPersona); // Agrega el nuevo JLabel al contenedor
+            }
+        }
 
         botonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Crud ventana = new Crud(arrayPersonas);
+                Crud ventana = new Crud(arrayPersonas, indicePerosnasRegistradas);
+                ventana.setVisible(true);
             }
         });
-
-
-
-
-        
 
         add(contenedorPrincipal);
 

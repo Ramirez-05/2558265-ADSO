@@ -1,7 +1,9 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+
 
 public class CrearUsuario extends JFrame {
 
@@ -13,15 +15,16 @@ public class CrearUsuario extends JFrame {
     private JTextField campoCorreo;
 
     private Persona[] arrayPersonas;
-    private int indicePersonasRegistradas;
 
     private Dimension imgSize;
 
+    private int indicePersonasRegistradas;
 
 
-    public CrearUsuario(Persona[] arrayPersonas) {
+
+    public CrearUsuario(Persona[] arrayPersonas, int indicePersonasRegistradas) {
         this.arrayPersonas = arrayPersonas;
-        this.indicePersonasRegistradas = 0;
+        this.indicePersonasRegistradas = indicePersonasRegistradas;
         imgSize = new Dimension(30, 30);
         initComponents();
     }
@@ -262,7 +265,7 @@ public class CrearUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas);
+                Crud Crud = new Crud(arrayPersonas, indicePersonasRegistradas);
                 Crud.setVisible(true);
                 dispose();
             }
@@ -283,30 +286,32 @@ public class CrearUsuario extends JFrame {
         String direccion = campoDireccion.getText();
         String correo = campoCorreo.getText();
 
-        //validarCampos
-        if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
-            ImageIcon img_error = new ImageIcon("IMG/icono_error.png");
-            ImageIcon icono = new ImageIcon(img_error.getImage().getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_SMOOTH));
+        // Validar campos
+            if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
+                ErrorRegistro error = new ErrorRegistro();
+                error.setVisible(true);
 
-            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos Vacíos", JOptionPane.ERROR_MESSAGE, icono);
-            return;
-        }
+                campoCedula.setBorder(new LineBorder(Color.RED, 1));
+                campoNombre.setBorder(new LineBorder(Color.RED, 1));
+                campoApellido.setBorder(new LineBorder(Color.RED, 1));
+                campoTelefono.setBorder(new LineBorder(Color.RED, 1));
+                campoDireccion.setBorder(new LineBorder(Color.RED, 1));
+                campoCorreo.setBorder(new LineBorder(Color.RED, 1));
+            }
 
-        for (int i = 0; i < arrayPersonas.length; i++) {
-            arrayPersonas[indicePersonasRegistradas] = new Persona(indicePersonasRegistradas,cedula, nombre, apellido, telefono, direccion, correo);
-            indicePersonasRegistradas++;
+            if (indicePersonasRegistradas < arrayPersonas.length) {
+                arrayPersonas[indicePersonasRegistradas] = new Persona(indicePersonasRegistradas, cedula, nombre, apellido, telefono, direccion, correo);
+                indicePersonasRegistradas++;
 
-            //limpiarCampos
-            campoCedula.setText("");
-            campoNombre.setText("");
-            campoApellido.setText("");
-            campoTelefono.setText("");
-            campoDireccion.setText("");
-            campoCorreo.setText("");
+                // Limpiar campos
+                campoCedula.setText("");
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreo.setText("");
 
-
-        }
-
+            }
         
     }
 }

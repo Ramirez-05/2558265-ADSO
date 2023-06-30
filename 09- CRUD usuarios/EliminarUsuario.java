@@ -7,9 +7,20 @@ import java.awt.event.*;
 public class EliminarUsuario extends JFrame {
     
     private Persona arrayPersonas[];
+    private int indicePerosnasRegistradas;
+
+    private JTextField campoCedula;
+    private JTextField campoNombre;
+    private JTextField campoApellido;
+    private JTextField campoTelefono;
+    private JTextField campoDireccion;
+    private JTextField campoCorreo;
+    private JButton btnEliminar;
+
     
-    public EliminarUsuario(Persona arrayPersonas[]) {
+    public EliminarUsuario(Persona arrayPersonas[], int indicePerosnasRegistradas) {
         this.arrayPersonas = arrayPersonas;
+        this.indicePerosnasRegistradas = indicePerosnasRegistradas;
         initComponents();
     }
     
@@ -75,7 +86,7 @@ public class EliminarUsuario extends JFrame {
         restriccionesBusqueda.insets = new Insets(0, 0, 6, 0);
         panelBusqueda.add(tituloCedula, restriccionesBusqueda);
 
-        JTextField campoCedula = new JTextField();
+        campoCedula = new JTextField();
         campoCedula.setFont(new Font("Arial", Font.BOLD, 18));
         campoCedula.setForeground(Color.BLACK);
         campoCedula.setPreferredSize(new Dimension(170, 30));
@@ -148,12 +159,11 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.insets = new Insets(0, 0, 6, 0);
         contenedorFormulario.add(tituloNombre, restricionesFormulario);
 
-        JTextField campoNombre = new JTextField();
-        campoNombre.setFont(new Font("Arial", Font.BOLD, 18));
+        campoNombre = new JTextField();
+        campoNombre.setFont(new Font("Arial", Font.BOLD, 16));
         campoNombre.setForeground(Color.BLACK);
         campoNombre.setBackground(ColorBtnCancelar);
         campoNombre.setPreferredSize(new Dimension(200, 32));
-        campoNombre.setEditable(false);
         campoNombre.setEnabled(false);
         restricionesFormulario.gridy = 1;
         restricionesFormulario.gridx = 1;
@@ -177,12 +187,12 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloApellido, restricionesFormulario);
 
-        JTextField campoApellido = new JTextField();
-        campoApellido.setFont(new Font("Arial", Font.BOLD, 18));
+        campoApellido = new JTextField();
+        campoApellido.setFont(new Font("Arial", Font.BOLD, 16));
         campoApellido.setForeground(Color.BLACK);
         campoApellido.setBackground(ColorBtnCancelar);
         campoApellido.setPreferredSize(new Dimension(200, 32));
-        campoApellido.setEditable(false);
+        campoApellido.setEnabled(false);
         campoApellido.setEnabled(false);
         restricionesFormulario.gridy = 2;
         restricionesFormulario.gridx = 1;
@@ -205,12 +215,12 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloTelefono, restricionesFormulario);
 
-        JTextField campoTelefono = new JTextField();
-        campoTelefono.setFont(new Font("Arial", Font.BOLD, 18));
+        campoTelefono = new JTextField();
+        campoTelefono.setFont(new Font("Arial", Font.BOLD, 16));
         campoTelefono.setForeground(Color.BLACK);
         campoTelefono.setBackground(ColorBtnCancelar);
         campoTelefono.setPreferredSize(new Dimension(200, 32));
-        campoTelefono.setEditable(false);
+        campoTelefono.setEnabled(false);
         campoTelefono.setEnabled(false);
         restricionesFormulario.gridy = 3;
         restricionesFormulario.gridx = 1;
@@ -233,12 +243,12 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloDireccion, restricionesFormulario);
 
-        JTextField campoDireccion = new JTextField();
-        campoDireccion.setFont(new Font("Arial", Font.BOLD, 18));
+        campoDireccion = new JTextField();
+        campoDireccion.setFont(new Font("Arial", Font.BOLD, 16));
         campoDireccion.setForeground(Color.BLACK);
         campoDireccion.setBackground(ColorBtnCancelar);
         campoDireccion.setPreferredSize(new Dimension(200, 32));
-        campoDireccion.setEditable(false);
+        campoDireccion.setEnabled(false);
         campoDireccion.setEnabled(false);
         restricionesFormulario.gridy = 4;
         restricionesFormulario.gridx = 1;
@@ -261,12 +271,12 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.fill = GridBagConstraints.BOTH;
         contenedorFormulario.add(tituloCorreo, restricionesFormulario);
 
-        JTextField campoCorreo = new JTextField();
-        campoCorreo.setFont(new Font("Arial", Font.BOLD, 18));
+        campoCorreo = new JTextField();
+        campoCorreo.setFont(new Font("Arial", Font.BOLD, 16));
         campoCorreo.setForeground(Color.BLACK);
         campoCorreo.setBackground(ColorBtnCancelar);
         campoCorreo.setPreferredSize(new Dimension(200, 30));
-        campoCorreo.setEditable(false);
+        campoCorreo.setEnabled(false);
         campoCorreo.setEnabled(false);
         restricionesFormulario.gridy = 5;
         restricionesFormulario.gridx = 1;
@@ -276,9 +286,6 @@ public class EliminarUsuario extends JFrame {
         restricionesFormulario.weighty = 0;
         restricionesFormulario.fill = GridBagConstraints.HORIZONTAL;
         contenedorFormulario.add(campoCorreo, restricionesFormulario);
-
-
-
 
         ///////////////////////// PANEL PARA BOTONES /////////////////////////////////
         JPanel contenedorBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 10));
@@ -297,7 +304,7 @@ public class EliminarUsuario extends JFrame {
         contenedorBotones.add(btnCancelar);
 
 
-        JButton btnEliminar = new JButton("ELIMINAR");
+        btnEliminar = new JButton("ELIMINAR");
         btnEliminar.setBorder(new EmptyBorder(9, 0, 9, 0));
         btnEliminar.setPreferredSize(new Dimension(140, 37));
         btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
@@ -317,17 +324,91 @@ public class EliminarUsuario extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Crud Crud = new Crud(arrayPersonas);
+                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
                 Crud.setVisible(true);
                 dispose();
             }
         });
 
-        
+        KeyListener eventoBuscarPersona = new KeyListener() { 
+			public void keyPressed(KeyEvent e) {
+			}
+
+			public void keyReleased(KeyEvent e) {
+				buscarPersona();
+                System.out.println("Buscando persona...");
+			}
+
+			public void keyTyped(KeyEvent e) {
+			}
+		};
+
+        campoCedula.addKeyListener(eventoBuscarPersona);
+
+        ActionListener eventoEliminarPerosna = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				EliminarPerosna();
+			}
+		};
+
+        btnEliminar.addActionListener(eventoEliminarPerosna);
+
+
     }
 
-    public void eventoCrearuser() {
-        // Agrega aquí la lógica para el evento de crear usuario
+    public void buscarPersona() {
+        String cedula = campoCedula.getText();
+
+        for (int i = 0; i < arrayPersonas.length; i++) {
+            if (arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)) {
+                
+                campoNombre.setText(arrayPersonas[i].getNombre());
+                campoApellido.setText(arrayPersonas[i].getApellido());
+                campoTelefono.setText(arrayPersonas[i].getTelefono());
+                campoDireccion.setText(arrayPersonas[i].getDireccion());
+                campoCorreo.setText(arrayPersonas[i].getCorreo());
+
+                btnEliminar.setEnabled(true);
+
+
+            }else if(cedula.isEmpty()){
+                campoNombre.setEditable(false);
+                campoApellido.setEditable(false);
+                campoTelefono.setEditable(false);
+                campoDireccion.setEditable(false);
+                campoCorreo.setEditable(false);
+
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreo.setText("");
+
+                btnEliminar.setEnabled(false);
+
+            }
+            
+        }
+    }
+
+    public void EliminarPerosna(){
+        String cedula = campoCedula.getText();
+
+        for (int i = 0; i < arrayPersonas.length; i++) {
+            if (arrayPersonas[i] != null && arrayPersonas[i].getCedula().equals(cedula)) {
+                arrayPersonas[i] = null;
+                indicePerosnasRegistradas--;
+                
+                Crud Crud = new Crud(arrayPersonas,indicePerosnasRegistradas);
+                Crud.setVisible(true);
+
+                EliminarPerosna eliminar = new EliminarPerosna();
+                eliminar.setVisible(false);
+
+                dispose();
+            }
+        }
     }
 
 

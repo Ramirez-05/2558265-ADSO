@@ -3,11 +3,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ErrorRegistro extends JFrame {
+public class ExitoModificar extends JFrame {
 
     private Dimension imgsize;
 
-    public ErrorRegistro() {
+    public ExitoModificar() {
         this.imgsize = new Dimension(60, 60);
         initComponents();
     }
@@ -27,7 +27,7 @@ public class ErrorRegistro extends JFrame {
         GridBagConstraints restriccion = new GridBagConstraints();
         //////////////////////////////////////////////////
 
-        ImageIcon img_bandera = new ImageIcon("IMG/icono_error.png");
+        ImageIcon img_bandera = new ImageIcon("IMG/icono_success.png");
         ImageIcon icono_bandera = new ImageIcon(img_bandera.getImage().getScaledInstance(imgsize.width, imgsize.height, Image.SCALE_SMOOTH));
 
         JLabel label_icono = new JLabel(icono_bandera);
@@ -39,7 +39,7 @@ public class ErrorRegistro extends JFrame {
         restriccion.weighty = 0.0;
         contenedorPrincipal.add(label_icono, restriccion);
 
-        JLabel titulo = new JLabel("Datos Inválidos");
+        JLabel titulo = new JLabel("CORRECTO");
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
         restriccion.gridy = 0;
         restriccion.gridx = 1;
@@ -49,7 +49,7 @@ public class ErrorRegistro extends JFrame {
         restriccion.weighty = 0;
         contenedorPrincipal.add(titulo, restriccion);
 
-        JLabel mensaje = new JLabel("Todos los campos son obligatorios");
+        JLabel mensaje = new JLabel("Se ha modificado el usuario");
         mensaje.setFont(new Font("Arial", Font.PLAIN, 12));
         restriccion.gridy = 1;
         restriccion.gridx = 1;
@@ -61,7 +61,7 @@ public class ErrorRegistro extends JFrame {
         contenedorPrincipal.add(mensaje, restriccion);
 
         JButton btnAceptar = new JButton("Aceptar");
-        btnAceptar.setBorder(new EmptyBorder(10, 10, 10, 8));
+        btnAceptar.setBorder(new EmptyBorder(10, 12, 10, 12));
         btnAceptar.setPreferredSize(new Dimension(100, 32));
         btnAceptar.setBackground(colorPersonalizado1);
         btnAceptar.setForeground(Color.WHITE);
