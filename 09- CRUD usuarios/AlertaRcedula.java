@@ -3,11 +3,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AlertaRcedula extends JFrame {
+public class AlertaRCedula extends JFrame {
 
     private Dimension imgsize;
 
-    public AlertaRcedula() {
+    public AlertaRCedula() {
         this.imgsize = new Dimension(60, 60);
         initComponents();
     }
