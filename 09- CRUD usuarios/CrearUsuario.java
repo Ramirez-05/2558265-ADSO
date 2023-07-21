@@ -296,7 +296,7 @@ public class CrearUsuario extends JFrame {
                 campoCedula.setBorder(new LineBorder(Color.RED, 1));
                 campoCedula.setText("");
 
-                AlertaRCedula repitio = new AlertaRCedula();
+                AlertaRcedula repitio = new AlertaRcedula();
                 repitio.setVisible(true);
                 
                 repetir = false;

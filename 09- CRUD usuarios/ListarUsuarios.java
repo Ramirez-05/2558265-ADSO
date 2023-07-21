@@ -32,6 +32,12 @@ public class ListarUsuarios extends JFrame {
         Image icono_crud = getToolkit().createImage(ClassLoader.getSystemResource("IMG/icono_almacenes.png"));
         setIconImage(icono_crud);
 
+
+        
+
+
+
+
         JPanel contenedorPrincipal = new JPanel(new BorderLayout());
         contenedorPrincipal.setBackground(colorPersonalizado2);
         contenedorPrincipal.setBorder(new EmptyBorder(5, 12, 12, 12));
