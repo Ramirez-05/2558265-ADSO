@@ -61,12 +61,22 @@ public class Menu extends javax.swing.JFrame {
         btn_editar.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar.setText("EDITAR");
         btn_editar.setFocusable(false);
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
         btn_eliminar.setBackground(new java.awt.Color(0, 51, 255));
         btn_eliminar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btn_eliminar.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar.setText("ELIMINAR");
         btn_eliminar.setFocusable(false);
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
 
         btn_salir.setBackground(new java.awt.Color(153, 0, 0));
         btn_salir.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -181,6 +191,29 @@ public class Menu extends javax.swing.JFrame {
         repaint();
         revalidate();
     }//GEN-LAST:event_btn_crearActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        contentPrincipal.removeAll();
+        
+        Editar temporal = new Editar(basedatos);
+        temporal.setSize( contentPrincipal.getSize() );
+        contentPrincipal.add( temporal );
+        
+        repaint();
+        revalidate();
+        
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        contentPrincipal.removeAll();
+        
+        Eliminar temporal = new Eliminar(basedatos);
+        temporal.setSize( contentPrincipal.getSize() );
+        contentPrincipal.add( temporal );
+        
+        repaint();
+        revalidate();
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
     public void initComponentAltern(){
         setVisible(true);
