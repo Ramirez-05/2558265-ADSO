@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2023 a las 15:55:17
+-- Tiempo de generación: 28-08-2023 a las 15:30:30
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -73,7 +73,8 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`id_informepago`, `id_metodo`, `id_suscripcion`) VALUES
-(1, 1, 3);
+(1, 1, 3),
+(2, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ CREATE TABLE `registrosuscriptor` (
 
 INSERT INTO `registrosuscriptor` (`documento`, `nombre`, `apellido`, `telefono`, `correo`, `direccion`, `rh`, `fechaNacimiento`, `numero_emergencia`, `sexo`, `discapacidad`, `estado`, `image_data`) VALUES
 ('1078', 'Herrera', 'Herrera', '147', 'mateo@gmail.com', 'calle 11', 'a+', '02/02/2020', '369', 'MASCULINO', '1222', 1, NULL),
-('1088', 'Juliana', 'Vanila', '30544', 'julian@mail.com', 'calle 9', '0+', '25/08/2023', '666', 'FEMENINO', 'Espalda', 1, NULL);
+('1088', 'Juliana', 'Vanila', '30544', 'julian@mail.com', 'calle 9', '0+', '25/08/2023', '666', 'FEMENINO', 'Espalda', 1, NULL),
+('144', 'Juan', 'Carmona', '9787', 'pablo@mail.com', '2500', 'o+', '13/08/1986', '0000', 'MASCULINO', 'Viejo', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,8 @@ CREATE TABLE `suscripciones` (
 
 INSERT INTO `suscripciones` (`id_suscripcion`, `id_tipo`, `documento`, `descuento`, `fecha_inicio`, `fecha_fin`, `estado`) VALUES
 (1, 1, '1078', 0, '2023-08-24', '2023-09-23', 1),
-(3, 3, '1088', 0, '2023-08-25', '2024-08-24', 1);
+(3, 3, '1088', 0, '2023-08-25', '2024-08-24', 1),
+(4, 3, '144', 0, '2023-08-25', '2024-08-24', 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,9 @@ INSERT INTO `tipo_suscripcion` (`id_tipo`, `nombre`, `descripcion`, `precio`, `d
 (1, 'EASY - Recurrente Mensual', 'Suscripcion Por Mes', 90000, 30),
 (2, 'VIP - Recurrente Semestral', 'Suscripcion Por 6 Meses', 390000, 180),
 (3, 'VIP - Recurrente Anual', 'Suscripcion Por 12 Meses', 590000, 365),
-(4, 'EASY - IRREGULAR', 'Suscripcion por 15 dias', 50000, 15);
+(4, 'EASY - IRREGULAR', 'Suscripcion por 15 dias', 50000, 15),
+(5, 'Si es uno nuevo', 'Hola nueva suscripcion', 20000, 30),
+(6, 'dadas', 'asdsadas', 40000, 45);
 
 --
 -- Índices para tablas volcadas
@@ -218,19 +223,19 @@ ALTER TABLE `metodo_pago`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_informepago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_informepago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `suscripciones`
 --
 ALTER TABLE `suscripciones`
-  MODIFY `id_suscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_suscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_suscripcion`
 --
 ALTER TABLE `tipo_suscripcion`
-  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
