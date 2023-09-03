@@ -102,7 +102,7 @@ public class DataBase {
          boolean respuesta = false;
          
         try {
-            String modificar = "UPDATE personas SET nombres = '"+nombre+"', apellidos = '"+apellido+"' , telefono = '"+telefono+"' , direccion = '"+direccion+"', email = '"+email+"' WHERE cedula = '"+cedula+"'";
+            String modificar = "UPDATE personas SET documento = '"+cedula+"' ,nombres = '"+nombre+"', apellidos = '"+apellido+"' , telefono = '"+telefono+"' , direccion = '"+direccion+"', email = '"+email+"' WHERE cedula = '"+cedula+"'";
             int resultado = this.manipularDB.executeUpdate(modificar);
             
              if(resultado == 1){
