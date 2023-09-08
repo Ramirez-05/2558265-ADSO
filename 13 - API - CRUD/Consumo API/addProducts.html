@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CONSUMO API - PHP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="dist/css/estilos.css">
+
+
+	<script src="dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+	<script src="dist/js/createProducts.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+
+<body>
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addClientes.html">Clientes</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addSellers.html">Vendedores</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addProducts.html">Productos</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Ventas</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Facturas</a>
+		</li>
+		
+	</ul>
+
+
+	<div class="col-12 content-fluid m-0 p-0 py-3 row justify-content-center vh-100">
+		<div class="col-12 col-lg-8 m-0 p-2 pstn-rltv">
+			<h1 class="text-center fw-bold"> PRODUCTOS </h1>
+			<div class="col-12 m-0 p-0">
+				<div class="col-12 m-0 p-0 row justify-content-end">
+					<button class="col-12 col-lg-auto btn btn-primary" title="Crear Nueva Persona"
+						data-bs-toggle="modal" data-bs-target="#modalCrearProduct"><b> <i class="fa fa-plus"
+								aria-hidden="true"></i> CREAR PRODUCTOS</b></button>
+				</div>
+				<div class="col-12 m-0 mt-2 p-0" style="overflow-x:auto;">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="bg-primary text-light">
+								<th class="text-center">NOMBRE</th>
+								<th class="text-center">DESCRIPCION</th>
+								<th class="text-center">PRECIO</th>
+								<th class="text-center">STOCK</th>
+								<th class="text-center" colspan="2">OPCIONES</th>
+							</tr>
+						</thead>
+						<tbody id="contentProducts">
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="waitContent" class="waitContent">
+				<div class="row h-100 justify-content-center">
+					<div class="col-12 m-0 p-0 text-center">
+						<div class="spinner-border m-0 text-primary" role="status">
+							<span class="visually-hidden font-3rem">Loading...</span>
+						</div>
+						<h3 class="m-0 p-0 text-primary">CARGANDO</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modalCrearProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="formInsertarProduct" action="#" method="POST" accept-charset="utf-8">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"><b>CREAR PRODUCTOS</b></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<div class="col-12 col-lg-8">
+								<label for="campo_nombre" class="form-label m-0"><b>NOMBRE:</b></label>
+								<input id="campo_nombre" type="text" name="nombre" class="form-control" required>
+
+								<label for="campo_descripcion" class="form-label m-0 mt-2"><b>DESCRIPCION:</b></label>
+								<input id="campo_descripcion" type="text" name="descripcion" class="form-control" required>
+
+								<label for="campo_precio" class="form-label m-0 mt-2"><b>PRECIO:</b></label>
+								<input id="campo_precio" type="number" name="precio" class="form-control" required>
+
+								<label for="campo_stock" class="form-label m-0 mt-2"><b>STOCK:</b></label>
+								<input id="campo_stock" type="number" name="stock" class="form-control" required>
+
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<button type="button" class="col col-lg-3 btn btn-secondary me-1"
+								data-bs-dismiss="modal">CERRAR</button>
+							<button type="submit" class="col col-lg-3 btn btn-primary ms-1">INSERTAR</button>
+						</div>
+					</div>
+				</form>
+				<div id="waitContentCreate" class="waitContent" style="display:none;">
+					<div class="row h-100 justify-content-center">
+						<div class="col-12 m-0 p-0 text-center">
+							<div class="spinner-border m-0 text-primary" role="status">
+								<span class="visually-hidden font-3rem">Loading...</span>
+							</div>
+							<h3 class="m-0 p-0 text-primary">CREANDO PRODUCTO</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalEditarProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="formEditarProduct" action="#" method="POST" accept-charset="utf-8">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"><b>EDITAR PRODUCTO</b></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<div class="col-12 col-lg-8">
+								<label for="campo_editar_cedula" class="form-label m-0"><b>CEDULA:</b></label>
+								<input id="campo_editar_cedula" type="text" name="cedula" class="form-control"
+									readonly>
+
+								<label for="campo_editar_nombres" class="form-label m-0 mt-2"><b>NOMBRES:</b></label>
+								<input id="campo_editar_nombres" type="text" name="nombres" class="form-control"
+									required>
+
+								<label for="campo_editar_apellidos"
+									class="form-label m-0 mt-2"><b>APELLIDOS:</b></label>
+								<input id="campo_editar_apellidos" type="text" name="apellidos" class="form-control"
+									required>
+
+								<label for="campo_editar_telefono" class="form-label m-0 mt-2"><b>TELEFONO:</b></label>
+								<input id="campo_editar_telefono" type="text" name="telefono" class="form-control"
+									required>
+
+								<label for="campo_editar_direccion"
+									class="form-label m-0 mt-2"><b>DIRECCION:</b></label>
+								<input id="campo_editar_direccion" type="text" name="direccion" class="form-control"
+									required>
+
+								<label for="campo_editar_email" class="form-label m-0 mt-2 mb-2"><b>E-MAIL:</b></label>
+								<input id="campo_editar_email" type="email" name="email" class="form-control" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<button type="button" class="col col-lg-3 btn btn-secondary me-1"
+								data-bs-dismiss="modal">CERRAR</button>
+							<button type="submit" class="col col-lg-3 btn btn-primary ms-1">GUARDAR</button>
+						</div>
+					</div>
+				</form>
+				<div id="waitContentEdit" class="waitContent" style="display:none;">
+					<div class="row h-100 justify-content-center">
+						<div class="col-12 m-0 p-0 text-center">
+							<div class="spinner-border m-0 text-primary" role="status">
+								<span class="visually-hidden font-3rem">Loading...</span>
+							</div>
+							<h3 class="m-0 p-0 text-primary">EDITANDO PRODUCTO</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
