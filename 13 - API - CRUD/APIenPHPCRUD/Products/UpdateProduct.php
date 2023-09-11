@@ -7,14 +7,14 @@
 
     if (!empty($_POST['nombre']) and !empty($_POST['descripcion']) and !empty($_POST['precio']) and !empty($_POST['stock']) ) {
 ;
-        $nombre = $_POST['nombres'];
+        $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $stock = $_POST['stock'];
 
         try{
 
-            $query = $base_de_datos->prepare("UPDATE productos SET descripcion = :descp, precio = :prec, stock = :stock WHERE nombre = :doc");
+            $query = $base_de_datos->prepare("UPDATE productos SET descripcion = :descp, precio = :prec, stock = :stock WHERE nombre = :nom");
 
             $query->bindParam(':nom', $nombre);
             $query->bindParam(':descp', $descripcion);

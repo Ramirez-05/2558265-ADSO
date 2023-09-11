@@ -3,9 +3,9 @@
 	header("Access-Control-Allow-Methods: GET, POST");
 	header("Access-Control-Allow-Headers: Content-Type");
 
-    include 'Conexion.php';
+    include '../Conexion.php';
 
-    $consulta = $base_de_datos->query("SELECT * FROM personas");
+    $consulta = $base_de_datos->query("SELECT * FROM ventas");
     $datos = $consulta->fetchAll();
 
     $respuesta['registros'] = $datos;

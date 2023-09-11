@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CONSUMO API - PHP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="dist/css/estilos.css">
+
+
+	<script src="dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+	<script src="dist/js/viewSales.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+
+<body>
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addClientes.html">Clientes</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addSellers.html">Vendedores</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addProducts.html">Productos</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addSales.html">Ventas</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="viewSales.html">Facturas</a>
+		</li>
+		
+	</ul>
+
+	<div class="col-12 content-fluid m-0 p-0 py-3 row justify-content-center vh-100">
+		<div class="col-12 col-lg-8 m-0 p-2 pstn-rltv">
+			<h1 class="text-center fw-bold"> Facturas </h1>
+			<div class="col-12 m-0 p-0">
+				<div class="col-12 m-0 p-0 row justify-content-end">
+					<button class="col-12 col-lg-auto btn btn-primary" title="Crear Nueva Factura" >
+                        <a href="addSales.html" class="fw-bold text-light" > <i class="fa fa-plus" ></i> CREAR FACTURA</a>
+                    </button>
+				</div>
+				<div class="col-12 m-0 mt-2 p-0" style="overflow-x:auto;">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="bg-primary text-light">
+								<th class="text-center">ID VENTA</th>
+								<th class="text-center">ID CLIENTE</th>
+								<th class="text-center">ID Vendedor</th>
+                                <th class="text-center">METODO</th>
+                                <th class="text-center">FECHA</th>
+								<th class="text-center" colspan="2">VER</th>
+							</tr>
+						</thead>
+						<tbody id="contentSales">
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="waitContent" class="waitContent">
+				<div class="row h-100 justify-content-center">
+					<div class="col-12 m-0 p-0 text-center">
+						<div class="spinner-border m-0 text-primary" role="status">
+							<span class="visually-hidden font-3rem">Loading...</span>
+						</div>
+						<h3 class="m-0 p-0 text-primary">CARGANDO</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+    <div class="modal fade" id="modalDetalle" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="bg-primary text-light">
+                            <th class="text-center">ID DETALLE</th>
+                            <th class="text-center">ID VENTA</th>
+                            <th class="text-center">ID PRODUCTO</th>
+                            <th class="text-center">CANTIDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contentDetalles">
+
+                    </tbody>
+                </table>
+
+				<div class="modal-footer">
+					<div class="col-12 m-0 p-0 row justify-content-center">
+						<button type="button" class="col col-lg-3 btn btn-secondary me-1"
+							data-bs-dismiss="modal">CERRAR</button>
+					</div>
+				</div>
+
+
+
+				
+				<div id="waitContentCreate" class="waitContent" style="display:none;">
+					<div class="row h-100 justify-content-center">
+						<div class="col-12 m-0 p-0 text-center">
+							<div class="spinner-border m-0 text-primary" role="status">
+								<span class="visually-hidden font-3rem">Loading...</span>
+							</div>
+							<h3 class="m-0 p-0 text-primary">CREANDO VENTA</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

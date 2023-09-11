@@ -67,7 +67,7 @@ function getClients( endpoint ){
 }
 
 function abrirModalEditar( indice ){
-	document.getElementById("campo_editar_nombres").value = listaVendedores[indice].nombre;
+	document.getElementById("campo_editar_nombre").value = listaVendedores[indice].nombre;
 	document.getElementById("campo_editar_descripcion").value = listaVendedores[indice].descripcion;
 	document.getElementById("campo_editar_precio").value = listaVendedores[indice].precio;
 	document.getElementById("campo_editar_stock").value = listaVendedores[indice].stock;
@@ -89,7 +89,7 @@ function confirmarEliminacion( indice ){
 				cancelButtonColor: '#00A100',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					eliminarPersona( listaVendedores[indice].cedula );
+					eliminarPersona( listaVendedores[indice].nombre );
 				}
 			});
 
@@ -202,10 +202,10 @@ function editarPersona(){
 
 }
 
-function eliminarPersona( cedula ){
+function eliminarPersona( nombre ){
 
 	let formData = new FormData();
-    formData.append('cedula', cedula); // Agrega la cédula al FormData
+    formData.append('nombre', nombre); // Agrega la cédula al FormData
 
     let configDelete = {
 							method: "POST",

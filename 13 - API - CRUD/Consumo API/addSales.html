@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CONSUMO API - PHP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="dist/css/estilos.css">
+
+
+	<script src="dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+	<script src="dist/js/createSales.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+
+<body>
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addClientes.html">Clientes</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addSellers.html">Vendedores</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addProducts.html">Productos</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="addSales.html">Ventas</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="viewSales.html">Facturas</a>
+		</li>
+
+	</ul>
+
+	<div class="col-12 content-fluid m-0 p-0 py-3 row justify-content-center vh-100">
+		<div class="col-12 col-lg-8 m-0 p-2 pstn-rltv">
+			<h1 class="text-center fw-bold"> VENTAS </h1>
+			<div class="col-12 m-0 p-0">
+
+				<!-- Formulario de Venta -->
+				<form id="ventaForm" class="needs-validation"  action="#" method="POST" novalidate>
+					<div class="mb-3">
+						<label for="cliente" class="form-label fw-bold">Cliente:</label>
+
+						<div id="content_select_customer">
+
+						</div>
+
+
+						<div class="invalid-feedback">
+							Por favor, selecciona un cliente.
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="producto" class="form-label fw-bold">Vendedor:</label>
+
+						<div id="content_select_sellers">
+
+						</div>
+
+						<div class="invalid-feedback">
+							Por favor, selecciona un producto.
+						</div>
+					</div>
+
+				</form>
+				<!-- Fin del Formulario de Venta -->
+
+				<div class="mb-3">
+					<label for="producto" class="form-label fw-bold">Productos</label>
+					<span class="fw-bold">- Marque El Producto Que Desea</span>
+					<div id="content_checkboxes_product">
+
+					</div>
+				</div>	
+
+					<div class="mt-4">
+						<button type="button" class="btn btn-primary" onclick="actualizarContenidoModal()">Continuar</button>
+					</div>
+			</div>
+
+			<div id="waitContent" class="waitContent">
+				<div class="row h-100 justify-content-center">
+					<div class="col-12 m-0 p-0 text-center">
+						<div class="spinner-border m-0 text-primary" role="status">
+							<span class="visually-hidden font-3rem">Loading...</span>
+						</div>
+						<h3 class="m-0 p-0 text-primary">CARGANDO</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="modalReistrarVenta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="formInsertarVenta" action="#" method="POST" accept-charset="utf-8" novalidate>
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"><b>REGISTRAR VENTA</b></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<div class="col-12 col-lg-8">
+				
+								<!-- Mostrar el cliente seleccionado -->
+								<div id="clienteSeleccionado" name="id_cliente" class="mb-3 fw-bold"></div>
+				
+								<!-- Mostrar el vendedor seleccionado -->
+								<div id="vendedorSeleccionado" name="id_vendedor" class="mb-3 fw-bold"></div>
+				
+								<div id="inputs_cantidad">
+				
+								</div>
+				
+								<div class="mt-4">
+									<label for="metodoPago" class="form-label">Metodo De Pago</label>
+									<select class="form-select" name="metododepago" id="metododepago" required>
+										<option value="" disabled selected>Seleccione Un Metodo</option>
+										<option value="Transferencia">Transferencia</option>
+										<option value="Tarjeta De Credito">Tarjeta De Credito</option>
+										<option value="Tarjeta De Debito">Tarjeta De Debito</option>
+									</select>
+								</div>
+				
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-12 m-0 p-0 row justify-content-center">
+							<button type="button" class="col col-lg-3 btn btn-secondary me-1" data-bs-dismiss="modal">CERRAR</button>
+							<button type="submit" class="col col-lg-3 btn btn-primary ms-1">REGISTRAR</button>
+						</div>
+					</div>
+				</form>
+				
+				<div id="waitContentCreate" class="waitContent" style="display:none;">
+					<div class="row h-100 justify-content-center">
+						<div class="col-12 m-0 p-0 text-center">
+							<div class="spinner-border m-0 text-primary" role="status">
+								<span class="visually-hidden font-3rem">Loading...</span>
+							</div>
+							<h3 class="m-0 p-0 text-primary">CREANDO VENTA</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+
+</html>

@@ -207,14 +207,14 @@ function editarPersona(){
 function eliminarPersona( cedula ){
 
 	let formData = new FormData();
-    formData.append('cedula', cedula); // Agrega la cédula al FormData
+    formData.append('cedula', cedula); 
 
     let configDelete = {
 							method: "POST",
 							headers: {
 								"Accept": "application/json",
 							},
-							body: formData, // Envía el FormData como cuerpo
+							body: formData, 
 						};
 	
 	fetch("http://localhost/APIenPHPCRUD/Sellers/DeleteSeller.php", configDelete)
