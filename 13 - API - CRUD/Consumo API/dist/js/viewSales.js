@@ -31,6 +31,9 @@ function getSales( endpoint ){
                             <td> 
                                 <button class="col-12 btn btn-primary" onclick="abrirModalTabla(${data.registros[i].id_venta})"> DETALLES</button>
                             </td>
+                            <td> 
+                                <button class="col-12 btn btn-danger" onclick="deleteVenta (${data.registros[i].id_venta})"> ELIMINAR</button>
+                            </td>
                         </tr>`;
             contentSales.innerHTML += temp;
         }
@@ -69,3 +72,62 @@ function abrirModalTabla( indice ){
         }
     });
 }
+
+function deleteVenta( indice ){
+
+    Swal.fire({
+        title: '¿Estás seguro?',	
+        icon: 'warning',
+        html: 'Se eliminará el registro de una venta',
+        showCancelButton: true,
+        cancelButtonText: 'CANCELAR',
+        confirmButtonText: 'ELIMINAR',
+        confirmButtonColor: '#A10000',
+        cancelButtonColor: '#00A100',
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            let datos = new FormData()
+            datos.append('id_venta', indice);
+
+            let configDelete = {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                },
+                body: datos, // Cambia formData por datos
+            };
+
+            fetch("http://localhost/APIenPHPCRUD/Sales/DeleteSale.php", configDelete)
+            .then( res => res.json() )
+            .then( data => {
+        
+                console.log(data);
+                
+                if (data.status){
+                    getSales("http://localhost/APIenPHPCRUD/Sales/ObtenerSale.php");
+                    
+                    Swal.fire({
+                        title: 'EXITO',
+                        icon: 'success',
+                        html: 'Registro eliminado con éxito.',
+                        confirmButtonText: 'ENTENDIDO'
+                    });
+
+                } else {
+                    Swal.fire({
+                        title: 'ERROR',
+                        icon: 'error',
+                        html: 'Se presentó un error al eliminar.',
+                        showCancelButton: true,
+                        cancelButtonText: 'CANCELAR',
+                        confirmButtonText: 'ENTENDIDO',
+                        confirmButtonColor: '#00A100',
+                        cancelButtonColor: '#A10000',
+                    });
+                }
+            });
+        }
+    });
+}
+

@@ -340,5 +340,4 @@ function crearVenta() {
         });
 }
 
-
 // ------------------------- FIN BLOQUE PARA CREAR LA VENTA -------------------------
