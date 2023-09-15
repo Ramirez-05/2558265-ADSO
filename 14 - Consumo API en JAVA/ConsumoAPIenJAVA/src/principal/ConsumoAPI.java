@@ -103,7 +103,6 @@ public class ConsumoAPI {
         }
     }
     
-    
     public String consumoPOST(String endpoint){
         try {
             // URL de la API
