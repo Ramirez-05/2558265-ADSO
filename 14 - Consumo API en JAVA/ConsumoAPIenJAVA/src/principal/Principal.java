@@ -23,8 +23,6 @@ public class Principal {
 
             // Analizar el JSON en un objeto JSON
             JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
-            
-            Tabla tabla = new Tabla(jsonObject);
 
             // Obtener el arreglo de registros
             JsonArray registros = jsonObject.getAsJsonArray("registros");
@@ -71,6 +69,12 @@ public class Principal {
         Map<String, String> deleteData = new HashMap<>();
         deleteData.put("cedula", "102200");
         System.out.println("Consumo DELETE: " + ejemplo.consumoPOST("http://localhost/APIenPHP/Delete.php", deleteData));
+        
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        
+        
+        
         
     }    
 }
