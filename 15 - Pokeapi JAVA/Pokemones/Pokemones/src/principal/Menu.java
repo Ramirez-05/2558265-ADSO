@@ -65,18 +65,23 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
         setResizable(false);
+
+        MostrarInformacion.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout MostrarInformacionLayout = new javax.swing.GroupLayout(MostrarInformacion);
         MostrarInformacion.setLayout(MostrarInformacionLayout);
         MostrarInformacionLayout.setHorizontalGroup(
             MostrarInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
         MostrarInformacionLayout.setVerticalGroup(
             MostrarInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 212, Short.MAX_VALUE)
         );
+
+        MostrarBotones.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout MostrarBotonesLayout = new javax.swing.GroupLayout(MostrarBotones);
         MostrarBotones.setLayout(MostrarBotonesLayout);
@@ -88,6 +93,8 @@ public class Menu extends javax.swing.JFrame {
             MostrarBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 148, Short.MAX_VALUE)
         );
+
+        pagination.setBackground(new java.awt.Color(204, 255, 255));
 
         javax.swing.GroupLayout paginationLayout = new javax.swing.GroupLayout(pagination);
         pagination.setLayout(paginationLayout);

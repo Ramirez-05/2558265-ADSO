@@ -3,6 +3,7 @@ package principal;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -18,12 +19,25 @@ public class MostrarPokemones extends javax.swing.JPanel {
 
     private ConsumoAPI consumption;
     private Gson gson;
+    private String urlGlobal;
+    private String[] nombres = {
+            "back_default",
+            "back_female",
+            "back_shiny",
+            "back_shiny_female",
+            "front_default",
+            "front_female",
+            "front_shiny",
+            "front_shiny_female"
+        };
+    private int currentIndex = 0;
     DefaultTableModel modelo;
     
     public MostrarPokemones(String url) {
         
         consumption = new ConsumoAPI();
         gson = new Gson();
+        this.urlGlobal = url;
         initComponents();
         initAlternComponets();
         mostrarInformacion(url);
@@ -36,6 +50,10 @@ public class MostrarPokemones extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaHabilidades = new javax.swing.JTable();
         imgPokemon = new javax.swing.JLabel();
+        btnSeguir = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 255, 204));
 
         tablaHabilidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,34 +68,74 @@ public class MostrarPokemones extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tablaHabilidades);
 
+        imgPokemon.setBackground(new java.awt.Color(255, 255, 204));
         imgPokemon.setOpaque(true);
+
+        btnSeguir.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnSeguir.setText(">>");
+        btnSeguir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeguirActionPerformed(evt);
+            }
+        });
+
+        btnAtras.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnAtras.setText("<<");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(16, 16, 16)
+                .addComponent(btnAtras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imgPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSeguir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imgPokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 51, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(imgPokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btnAtras)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(btnSeguir)
+                .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguirActionPerformed
+        avanzarImagenes();
+    }//GEN-LAST:event_btnSeguirActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        retrocederImagenes();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     public void initAlternComponets(){
        modelo = (DefaultTableModel) tablaHabilidades.getModel();
+
     }
     
     public void mostrarInformacion(String url){
@@ -143,7 +201,8 @@ public class MostrarPokemones extends javax.swing.JPanel {
                 JsonArray abilities = jsonObject.getAsJsonArray("abilities");
 
                 modelo.setRowCount(0);
-
+                System.out.println("");
+                System.out.println("URL DE HABILIDADES");
                 for (int i = 0; i < abilities.size(); i++) {
                     JsonObject abilityObject = abilities.get(i).getAsJsonObject();
                     JsonObject ability = abilityObject.getAsJsonObject("ability");
@@ -155,14 +214,77 @@ public class MostrarPokemones extends javax.swing.JPanel {
 
                     modelo.addRow(fila);
                 }
+                System.out.println("");
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
             }
         }
     }
     
+    public void avanzarImagenes() {
+        String responseJson = consumption.consumoGET(urlGlobal);
 
+        if (responseJson != null) {
+            try {
+                JsonObject tempJson = gson.fromJson(responseJson, JsonObject.class);
+                JsonObject spritesObject = tempJson.getAsJsonObject("sprites");
+                System.out.println("Indice next = "+currentIndex);
+                for (int i = currentIndex; i < nombres.length; i++) {
+                    
+                    JsonElement element = spritesObject.get(nombres[i]); 
+
+                    if (element != null && !element.isJsonNull()) {
+                        String imgCollected = element.getAsString();
+                        System.out.println("Img Obtenida = " + imgCollected);
+                        mostrarImagen(imgCollected);
+                        currentIndex++;
+                        break;
+                    }else{
+                        currentIndex++;
+                    }
+                }
+
+                if (currentIndex >= nombres.length) {
+                    btnSeguir.setEnabled(false);
+                }
+
+            } catch (JsonSyntaxException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void retrocederImagenes(){ 
+        
+        
+        
+        
+    }
+     
+    private void mostrarImagen(String imgUrl) {
+        int width = 200;
+        int height = 200;
+
+        try {
+            BufferedImage originalImage = ImageIO.read(new URL(imgUrl));
+
+            if (originalImage != null) {
+                Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                imgPokemon.setIcon(new ImageIcon(resizedImage));
+            } else {
+                System.err.println("No se pudo cargar la imagen desde la URL: " + imgUrl);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnSeguir;
     private javax.swing.JLabel imgPokemon;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaHabilidades;
