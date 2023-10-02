@@ -54,6 +54,7 @@ public class MostrarPokemones extends javax.swing.JPanel {
         btnAtras = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 204));
+        setOpaque(false);
 
         tablaHabilidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,9 +70,10 @@ public class MostrarPokemones extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tablaHabilidades);
 
         imgPokemon.setBackground(new java.awt.Color(255, 255, 204));
-        imgPokemon.setOpaque(true);
 
+        btnSeguir.setBackground(new java.awt.Color(255, 0, 0));
         btnSeguir.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnSeguir.setForeground(new java.awt.Color(0, 0, 0));
         btnSeguir.setText(">>");
         btnSeguir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +81,9 @@ public class MostrarPokemones extends javax.swing.JPanel {
             }
         });
 
+        btnAtras.setBackground(new java.awt.Color(51, 204, 0));
         btnAtras.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(0, 0, 0));
         btnAtras.setText("<<");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,31 +226,76 @@ public class MostrarPokemones extends javax.swing.JPanel {
     }
     
     public void avanzarImagenes() {
+         String responseJson = consumption.consumoGET(urlGlobal);
+
+         if (responseJson != null) {
+             try {
+                 JsonObject tempJson = gson.fromJson(responseJson, JsonObject.class);
+                 JsonObject spritesObject = tempJson.getAsJsonObject("sprites");
+                 System.out.println("INDEX NEXT = " + currentIndex);
+
+                 for (int i = currentIndex; i < nombres.length; i++) {
+                     JsonElement element = spritesObject.get(nombres[i]);
+
+                     if (element != null && !element.isJsonNull()) {
+                         String imgCollected = element.getAsString();
+                         System.out.println("Img Obtenida = " + imgCollected);
+                         mostrarImagen(imgCollected);
+                         currentIndex++;
+                         break;
+                     } else {
+                         currentIndex++;
+                     }
+                 }
+
+                 if (currentIndex >= nombres.length) {
+                    AlertAvanzar alert = new AlertAvanzar();
+                    alert.setVisible(true);
+
+                    btnSeguir.setEnabled(false);
+                    currentIndex = 7;
+                }
+                 btnAtras.setEnabled(true);
+
+             } catch (JsonSyntaxException ex) {
+                 ex.printStackTrace();
+             }
+         }
+     }
+
+      public void retrocederImagenes() {
         String responseJson = consumption.consumoGET(urlGlobal);
 
         if (responseJson != null) {
             try {
                 JsonObject tempJson = gson.fromJson(responseJson, JsonObject.class);
                 JsonObject spritesObject = tempJson.getAsJsonObject("sprites");
-                System.out.println("Indice next = "+currentIndex);
-                for (int i = currentIndex; i < nombres.length; i++) {
-                    
-                    JsonElement element = spritesObject.get(nombres[i]); 
+                System.out.println("INDEX PREV = " + currentIndex);
+
+                for (int i = currentIndex; i >= 0; i--) {
+                    JsonElement element = spritesObject.get(nombres[i]);
 
                     if (element != null && !element.isJsonNull()) {
                         String imgCollected = element.getAsString();
                         System.out.println("Img Obtenida = " + imgCollected);
                         mostrarImagen(imgCollected);
-                        currentIndex++;
+                        currentIndex--;
                         break;
-                    }else{
-                        currentIndex++;
+                    } else {
+                        currentIndex--;
                     }
                 }
 
-                if (currentIndex >= nombres.length) {
-                    btnSeguir.setEnabled(false);
+                if (currentIndex < 0) {
+                    
+                    AlertRetroceder alert = new AlertRetroceder();
+                    alert.setVisible(true);
+      
+                    btnAtras.setEnabled(false);
+                    currentIndex = 0;
                 }
+                
+                btnSeguir.setEnabled(true);
 
             } catch (JsonSyntaxException ex) {
                 ex.printStackTrace();
@@ -254,30 +303,30 @@ public class MostrarPokemones extends javax.swing.JPanel {
         }
     }
 
-    public void retrocederImagenes(){ 
-        
-        
-        
-        
-    }
-     
+
     private void mostrarImagen(String imgUrl) {
-        int width = 200;
-        int height = 200;
+         int width = 200;
+         int height = 200;
 
-        try {
-            BufferedImage originalImage = ImageIO.read(new URL(imgUrl));
+         try {
+             BufferedImage originalImage = ImageIO.read(new URL(imgUrl));
 
-            if (originalImage != null) {
-                Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                imgPokemon.setIcon(new ImageIcon(resizedImage));
-            } else {
-                System.err.println("No se pudo cargar la imagen desde la URL: " + imgUrl);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+             if (originalImage != null) {
+                 Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                 ImageIcon imageIcon = new ImageIcon(resizedImage);
+
+                 // Actualiza la etiqueta imgPokemon con la nueva imagen
+                 imgPokemon.setIcon(imageIcon);
+             } else {
+                 System.err.println("No se pudo cargar la imagen desde la URL: " + imgUrl);
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+
+     
+    
 
 
     

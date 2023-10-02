@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JButton;
 
-
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -14,31 +13,37 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.awt.Color;
 import java.awt.Dimension;
-
+import java.awt.Font;
 
 import java.awt.GridLayout;
-import java.awt.Image;
+
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableModel;
+
 
 
 public class Menu extends javax.swing.JFrame {
 
     private ConsumoAPI consumption;
     private Gson gson;
+    private int currentPage = 1;
     
     public Menu() {
         consumption = new ConsumoAPI();
         gson = new Gson();
         initComponents();
-        initAlternComponets();   
+        initAlternComponets();  
+        
+        // Centrar la ventana en la pantalla
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
+        setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
+
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -49,6 +54,7 @@ public class Menu extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         MostrarInformacion = new javax.swing.JPanel();
         MostrarBotones = new javax.swing.JPanel();
+        Buttons = new javax.swing.JPanel();
         pagination = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,7 +71,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
         MostrarInformacion.setBackground(new java.awt.Color(255, 204, 204));
@@ -94,7 +100,20 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 148, Short.MAX_VALUE)
         );
 
-        pagination.setBackground(new java.awt.Color(204, 255, 255));
+        Buttons.setBackground(new java.awt.Color(204, 255, 255));
+
+        javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
+        Buttons.setLayout(ButtonsLayout);
+        ButtonsLayout.setHorizontalGroup(
+            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ButtonsLayout.setVerticalGroup(
+            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
+        );
+
+        pagination.setBackground(new java.awt.Color(102, 102, 255));
 
         javax.swing.GroupLayout paginationLayout = new javax.swing.GroupLayout(pagination);
         pagination.setLayout(paginationLayout);
@@ -111,12 +130,13 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MostrarBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MostrarInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pagination, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MostrarBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MostrarInformacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Buttons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pagination, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,15 +146,17 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(MostrarInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MostrarBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pagination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void initAlternComponets() {
+     public void initAlternComponets() {
         
         String consumingApi = consumption.consumoGET("https://pokeapi.co/api/v2/pokemon");
         if (consumingApi != null) {
@@ -165,6 +187,8 @@ public class Menu extends javax.swing.JFrame {
         MostrarBotones.removeAll();
 
         MostrarBotones.setLayout(new GridLayout(0, 4)); // 4 columnas, filas automáticas
+        
+        Font font = new Font("Arial", Font.BOLD, 14);
 
         for (int i = 0; i < results.size(); i++) {
             JsonObject pokemonData = results.get(i).getAsJsonObject();
@@ -175,6 +199,8 @@ public class Menu extends javax.swing.JFrame {
 
             // Configura la URL del Pokémon como el ActionCommand del botón
             boton.setActionCommand(url);
+            
+            boton.setFont(font);
 
             
             boton.addActionListener(new ActionListener() {
@@ -200,8 +226,8 @@ public class Menu extends javax.swing.JFrame {
         MostrarBotones.revalidate();
         
     }
-
-    public void pagination(String siguiente, String atras) {
+   
+     public void pagination(String siguiente, String atras) {
         
         pagination.removeAll();
         
@@ -259,6 +285,66 @@ public class Menu extends javax.swing.JFrame {
         pagination.add(botonSiguiente, gbc);
 
         pagination.revalidate();
+    }
+    
+    public void buttons(String siguiente, String atras) {
+
+        Buttons.removeAll();
+        
+        Font font = new Font("Arial", Font.BOLD, 14);
+        
+        JButton botonAtras = new JButton("Atrás");
+        botonAtras.setBackground(Color.GREEN);
+        botonAtras.setForeground(Color.BLACK);
+        botonAtras.setFont(font);
+
+        JButton botonSiguiente = new JButton("Siguiente");
+        botonSiguiente.setBackground(Color.RED); 
+        botonSiguiente.setForeground(Color.BLACK);
+        botonSiguiente.setFont(font);
+
+        // -----  verificar si no llego nulo para no deshabilitar
+        botonAtras.setActionCommand(atras);
+        botonAtras.setEnabled(atras != null);
+
+        botonSiguiente.setActionCommand(siguiente);
+        botonSiguiente.setEnabled(siguiente != null);
+        // -----    
+        
+        botonSiguiente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("URL del siguinete: " + siguiente);
+
+                actualizarContenido(siguiente);
+            }
+        });
+
+        botonAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("URL atras: " + atras);
+                actualizarContenido(atras);
+
+            }
+        });
+
+        botonAtras.setPreferredSize(new Dimension(100, 40));
+        botonSiguiente.setPreferredSize(new Dimension(100, 40));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0; 
+        gbc.insets = new Insets(10, 10, 10, 10); // Espaciado entre botones
+
+        Buttons.setLayout(new GridBagLayout()); 
+        Buttons.add(botonAtras, gbc);
+
+        gbc.gridx = 1;
+        Buttons.add(botonSiguiente, gbc);
+
+        Buttons.revalidate();
     }
 
     public void actualizarContenido(String urlPokemon){
@@ -324,6 +410,7 @@ public class Menu extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Buttons;
     private javax.swing.JPanel MostrarBotones;
     private javax.swing.JPanel MostrarInformacion;
     private javax.swing.JScrollPane jScrollPane1;
