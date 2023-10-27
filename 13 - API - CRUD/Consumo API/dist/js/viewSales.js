@@ -23,11 +23,11 @@ function getSales( endpoint ){
         contentSales.innerHTML = "";
         for (var i = 0; i < data.registros.length; i++) {
             temp = `	<tr>
-                            <td> ${ data.registros[i].id_venta } </td>
-                            <td> ${ data.registros[i].id_cliente } </td>
-                            <td> ${ data.registros[i].id_vendedor } </td>
-                            <td> ${ data.registros[i].metododepago } </td>
-                            <td> ${ data.registros[i].fecha } </td>
+                            <td> ${ data.id_venta } </td>
+                            <td> ${ data.id_cliente } </td>
+                            <td> ${ data.id_vendedor } </td>
+                            <td> ${ data.metododepago } </td>
+                            <td> ${ data.fecha } </td>
                             <td> 
                                 <button class="col-12 btn btn-primary" onclick="abrirModalTabla(${data.registros[i].id_venta})"> DETALLES</button>
                             </td>
