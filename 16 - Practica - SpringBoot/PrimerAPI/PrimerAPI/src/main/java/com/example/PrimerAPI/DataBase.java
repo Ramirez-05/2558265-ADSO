@@ -1,8 +1,6 @@
 package com.example.PrimerAPI;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DataBase {
     
@@ -25,22 +23,6 @@ public class DataBase {
         } catch (SQLException ex) {
             System.out.println("Error en conexion a base de dato: "+ex.getMessage());
         }
-    }
-    
-    public boolean insertarPersona(String cedula, String nombres, String apellidos, String telefono, String direccion, String email){
-        boolean respuesta = false;
-        
-        try {
-            String consulta = "INSERT INTO personas (cedula, nombres, apellidos, telefono, direccion, email) VALUES ('"+cedula+"','"+nombres+"','"+apellidos+"','"+telefono+"','"+direccion+"','"+email+"')";
-            int resultado = this.manipularDB.executeUpdate(consulta);
-            if (resultado==1) {
-                respuesta = true;
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error al insertar: "+ex.getMessage());
-        }
-        
-        return respuesta;
     }
     
     public ResultSet listaPersonas(){

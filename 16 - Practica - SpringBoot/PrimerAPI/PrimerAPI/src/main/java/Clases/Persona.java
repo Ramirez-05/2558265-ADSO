@@ -1,5 +1,5 @@
 
-package com.example.PrimerAPI;
+package Clases;
 
 public class Persona {
     String cedula;
@@ -55,8 +55,5 @@ public class Persona {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
-    
+   
 }
