@@ -1,29 +1,15 @@
-package Api_Parqueadero;
+package PackagesDB;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Parqueadero {
-    Connection conexion;
-    Statement manipularDB;
+public class ParqueaderoDB extends DataBase{
     
-     public Parqueadero(){
-        String hostname = "localhost";
-        String puerto = "3306";
-        String user_name = "root";
-        String password = "";
-        String database_name = "parqueadero";
-        
-        String url = "jdbc:mysql://"+hostname+":"+puerto+"/"+database_name;
-        
-        try {
-            this.conexion = DriverManager.getConnection(url, user_name, password);
-            this.manipularDB = this.conexion.createStatement();
-            System.out.println("Conexion a DataBase Exitosa.");
-        } catch (SQLException ex) {
-            System.out.println("Error en conexion a base de dato: "+ex.getMessage());
-        }
+    public ParqueaderoDB(){
+        System.out.println("Estamos en el constructor del ParqueaderDB");
     }
-     
+    
     public ResultSet listaParqueaderos(){
         ResultSet listado = null;
         try {
@@ -51,7 +37,7 @@ public class Parqueadero {
                 preparedStatement.setString(1, nit);
 
                 int registrosEliminados = preparedStatement.executeUpdate();
-
+                System.out.println("executeEliminado "+registrosEliminados);
                 if (registrosEliminados > 0) {
                     respuesta = true;
                 }
@@ -66,7 +52,7 @@ public class Parqueadero {
         boolean respuesta = false;
         
         try {
-            String consulta = "INSERT INTO parqueadero (nit, nombre, direccion, telefono) VALUES ('"+nit+"','"+nombre+"','"+direccion+"','"+telefono+"','"+direccion+"')";
+            String consulta = "INSERT INTO parqueadero (nit, nombre, direccion, telefono) VALUES ('"+nit+"','"+nombre+"','"+direccion+"','"+telefono+"')";
             int resultado = this.manipularDB.executeUpdate(consulta);
             if (resultado==1) {
                 respuesta = true;
@@ -117,8 +103,5 @@ public class Parqueadero {
             return false; 
         }
     }
-
     
 }
-
-

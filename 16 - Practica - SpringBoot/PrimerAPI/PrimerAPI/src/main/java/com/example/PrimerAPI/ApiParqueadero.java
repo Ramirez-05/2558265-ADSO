@@ -2,8 +2,10 @@ package com.example.PrimerAPI;
 
 import org.springframework.dao.DataAccessException;
 
-import Api_Parqueadero.Parqueadero;
+import PackagesDB.DataBase;
+import PackagesDB.ParqueaderoDB;
 import Clases.Parking;
+import Clases.ToolsApi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,15 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 @CrossOrigin(origins = "*")
-public class PrimerApiApplication {
-    Parqueadero parqueadero;
+public class ApiParqueadero {
     
-    public static void main(String[] args) {
-        SpringApplication.run(PrimerApiApplication.class, args);
-    }
+    ParqueaderoDB parqueadero;
     
-    public PrimerApiApplication(){
-        this.parqueadero = new Parqueadero();
+     public ApiParqueadero(){
+        this.parqueadero = new ParqueaderoDB();
     }
     
     @GetMapping("/obtenerParqueaderos")
@@ -72,30 +71,12 @@ public class PrimerApiApplication {
         try {
             if (nit != null && !nit.isEmpty()) {
                 boolean eliminacionExitosa = parqueadero.eliminarParqueadero(nit);
-
-                if (eliminacionExitosa) {
-                    Map<String, Object> deleteResponse = new HashMap<>();
-                    deleteResponse.put("status", true);
-                    deleteResponse.put("message", "OK##DELETE");
-                    return ResponseEntity.ok(deleteResponse);
-                } else {
-                    Map<String, Object> errorResponse = new HashMap<>();
-                    errorResponse.put("status", false);
-                    errorResponse.put("message", "ERROR##DELETE");
-                    return ResponseEntity.ok(errorResponse);
-                }
+                return ResponseEntity.ok( ToolsApi.createMaps(eliminacionExitosa, (eliminacionExitosa)? "OK##DELETE":"ERROR##DELETE" ) );
             } else {
-                Map<String, Object> errorResponse = new HashMap<>();    
-                errorResponse.put("status", false);
-                errorResponse.put("message", "ERROR##DATOS##POST");
-                return ResponseEntity.badRequest().body(errorResponse);
+                return ResponseEntity.ok( ToolsApi.createMaps(false, "ERROR##DATOS##POST") );
             }
         } catch (DataAccessException e) {
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("status", false);
-            errorResponse.put("message", "ERROR##SQL");
-            errorResponse.put("exception", e.getMessage());
-            return ResponseEntity.badRequest().body(errorResponse);
+            return ResponseEntity.badRequest().body(ToolsApi.createMaps(false, "ERROR##SQL", e) );
         }
     }
     
@@ -110,17 +91,22 @@ public class PrimerApiApplication {
                     Map<String, Object> insertResponse = new HashMap<>();
                     insertResponse.put("status", true);
                     insertResponse.put("message", "OK##PARQUEADERO##INSERT");
+                    
+                    System.out.println("-> resp: "+insertResponse.toString());
                     return ResponseEntity.ok(insertResponse);
                 } else {
                     Map<String, Object> errorResponse = new HashMap<>();
                     errorResponse.put("status", false);
                     errorResponse.put("message", "ERROR##PARQUEADERO##INSERT");
+                    System.out.println("-> resp: "+errorResponse.toString());
                     return ResponseEntity.badRequest().body(errorResponse);
                 }
             } else {
                 Map<String, Object> errorResponse = new HashMap<>();
                 errorResponse.put("status", false);
                 errorResponse.put("message", "ERROR##DATOS##POST");
+                System.out.println("-> resp: "+errorResponse.toString());
+                
                 return ResponseEntity.badRequest().body(errorResponse);
             }
         } catch (DataAccessException e) {
@@ -128,6 +114,7 @@ public class PrimerApiApplication {
             errorResponse.put("status", false);
             errorResponse.put("message", "ERROR##SQL");
             errorResponse.put("exception", e.getMessage());
+            System.out.println("-> resp: "+errorResponse.toString());
             return ResponseEntity.badRequest().body(errorResponse);
         }
     }
@@ -164,7 +151,7 @@ public class PrimerApiApplication {
         }
     }
        
-   @GetMapping("/verificarParqueadero")
+    @GetMapping("/verificarParqueadero")
     public ResponseEntity<Object> verificarParqueadero(@RequestParam(name = "nit", required = false) String nit) {
         try {
             if (nit != null && !nit.isEmpty()) {
@@ -199,11 +186,6 @@ public class PrimerApiApplication {
             return ResponseEntity.badRequest().body(errorResponse);
         }
     }
-
-
-
-
-    
-    
+   
     
 }
