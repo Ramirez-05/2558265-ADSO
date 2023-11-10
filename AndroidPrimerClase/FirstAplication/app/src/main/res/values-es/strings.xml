@@ -1,0 +1,12 @@
+
+<resources>
+
+    <string name="app_name">Second Aplication</string>
+    <string name="title">Titulo</string>
+    <string name="id">Id</string>
+    <string name="nombre">name:</string>
+    <string name="email">Email:</string>
+    <string name="registrer">Registrer</string>
+
+
+</resources>
