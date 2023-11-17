@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pregunta - 01:"
+        android:text="Pregunta - 02:"
         android:layout_marginLeft="15dp"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="- ¿JAVA es un lenguaje compilado?"
+        android:text="- ¿Que Significa HTTPS?"
         android:layout_marginLeft="50dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
@@ -64,8 +64,8 @@
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sí"
-            android:textSize="25dp"
+            android:text="Hypertext Transfer Protocol Secure"
+            android:textSize="19dp"
             android:textStyle="bold"
             android:layout_marginLeft="30dp"
             />
@@ -75,11 +75,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="25dp"
-            android:text="No"
+            android:textSize="19dp"
+            android:text="Hyperlink Textual Security"
             android:layout_marginLeft="30dp"
             />
 
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:text="Highly Trusted Server Protocol"
+            android:layout_marginLeft="30dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:layout_marginBottom="4dp"
+            android:text="Hypertext Transmission Security Protocol"
+            android:layout_marginLeft="30dp"
+            />
     </RadioGroup>
 
 
@@ -93,7 +113,7 @@
         android:onClick="response"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/blueV1" />
-        />
+    />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

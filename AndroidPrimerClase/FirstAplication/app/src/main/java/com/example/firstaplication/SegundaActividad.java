@@ -1,16 +1,17 @@
 package com.example.firstaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
-public class MainActivity extends AppCompatActivity {
+public class SegundaActividad extends AppCompatActivity {
 
     RadioGroup radioGroup;
     Button btn_registrer;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_segunda_actividad);
 
         radioGroup = findViewById(R.id.radioGroup);
         btn_registrer = findViewById(R.id.btn_registrer);
@@ -32,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
             String respuesta = selectedRadioButton.getText().toString();
             System.out.println("lo que llego del radio --- "+respuesta);
-            Intent intencion = new Intent(this, SegundaActividad.class);
+            Intent intencion = new Intent(this, TerceraActividad.class);
             intencion.putExtra("respuesta", respuesta);
             startActivity(intencion);
             finish();
         } else {
-            Toast.makeText(MainActivity.this, "Por favor, selecciona una respuesta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SegundaActividad.this, "Por favor, selecciona una respuesta", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

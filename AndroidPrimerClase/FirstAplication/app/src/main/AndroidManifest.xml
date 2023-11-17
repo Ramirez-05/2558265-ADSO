@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FirstAplication"
         tools:targetApi="31">
         <activity
+            android:name=".TerceraActividad"
+            android:exported="false" />
+        <activity
+            android:name=".SegundaActividad"
+            android:exported="true"></activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
