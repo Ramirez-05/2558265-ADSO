@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pregunta - 03:"
+        android:text="Pregunta - 04:"
         android:layout_marginLeft="15dp"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="- ¿HTML es un lenguaje de programacion?"
+        android:text="- ¿Que Significa CSS?"
         android:layout_marginLeft="50dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
@@ -64,8 +64,8 @@
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sí"
-            android:textSize="25dp"
+            android:text="Cascading Style Sheets"
+            android:textSize="19dp"
             android:textStyle="bold"
             android:layout_marginLeft="30dp"
             />
@@ -75,11 +75,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="25dp"
-            android:text="No"
+            android:textSize="19dp"
+            android:text="Centralized Style System"
             android:layout_marginLeft="30dp"
             />
 
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:text="Code Styling Software"
+            android:layout_marginLeft="30dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:layout_marginBottom="4dp"
+            android:text="Content Sharing Service"
+            android:layout_marginLeft="30dp"
+            />
     </RadioGroup>
 
 

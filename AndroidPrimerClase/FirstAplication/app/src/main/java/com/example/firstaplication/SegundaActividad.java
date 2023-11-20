@@ -11,10 +11,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class SegundaActividad extends AppCompatActivity {
 
     RadioGroup radioGroup;
     Button btn_registrer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +29,15 @@ public class SegundaActividad extends AppCompatActivity {
 
         radioGroup = findViewById(R.id.radioGroup);
         btn_registrer = findViewById(R.id.btn_registrer);
+
+        // Recibe la lista actualizada de actividades
+        Class<?>[] activitiesArray = (Class<?>[]) getIntent().getSerializableExtra("activitiesList");
+
     }
 
-    public void response(View vista) {
+
+    public void response(View view) {
+
         int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
 
         if (selectedRadioButtonId != -1) {
@@ -33,12 +45,32 @@ public class SegundaActividad extends AppCompatActivity {
 
             String respuesta = selectedRadioButton.getText().toString();
             System.out.println("lo que llego del radio --- "+respuesta);
-            Intent intencion = new Intent(this, TerceraActividad.class);
-            intencion.putExtra("respuesta", respuesta);
-            startActivity(intencion);
+
+            if (!activitiesList.isEmpty()) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(activitiesList.size());
+
+
+                // Obtiene la clase de la actividad aleatoria y la elimina de la lista
+                Class<?> randomActivityClass = activitiesList.remove(randomIndex);
+
+                // Crea un intent para iniciar la actividad aleatoria
+                Intent intent = new Intent(this, randomActivityClass);
+
+                // Inicia la actividad con el intent
+                startActivity(intent);
+            } else {
+                // Si no hay más actividades, muestra un mensaje
+                Toast.makeText(MainActivity.this, "Has mostrado todas las actividades", Toast.LENGTH_SHORT).show();
+            }
             finish();
         } else {
-            Toast.makeText(SegundaActividad.this, "Por favor, selecciona una respuesta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Por favor, selecciona una respuesta", Toast.LENGTH_SHORT).show();
         }
     }
+}
+
+
+
+
 }
