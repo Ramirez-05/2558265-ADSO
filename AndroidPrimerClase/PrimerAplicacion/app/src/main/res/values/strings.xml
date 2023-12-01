@@ -1,0 +1,14 @@
+<resources>
+    <string name="pregunta1">¿JAVA Es Un Lenguaje Interpretado?</string>
+    <string name="pregunta2">¿HTML Es Un Lenguaje De Programacion?</string>
+    <string name="pregunta3">¿Cuál Significa JS?</string>
+    <string name="pregunta4">¿Cuál Significa CSS?</string>
+    <string name="pregunta5">¿PYTHON Es Un Lenguaje Compilado?</string>
+    <string name="pregunta6">¿Que Es Un ORM?</string>
+    <string name="pregunta7">¿Que Es Un Objeto En Programacion?</string>
+    <string name="pregunta8">¿En Que Tipos Se Clasifican Los Datos ?</string>
+    <string name="pregunta9">¿C++ Es Un Lenguaje De Programacion?</string>
+    <string name="pregunta10">¿Que Significa HTTP?</string>
+    <string name="register">ENVIAR</string>
+    <string name="app_name">preguntas</string>
+</resources>
