@@ -4,7 +4,6 @@ public class Pokemon {
 
     String nombre;
     String url;
-
     String id;
 
     public Pokemon(String nombre, String url, String id ) {

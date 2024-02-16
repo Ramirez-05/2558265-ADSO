@@ -55,6 +55,7 @@ public class AdaptadorPokemon extends RecyclerView.Adapter<AdaptadorPokemon.View
             etqNombrePoke = itemView.findViewById(R.id.etqNombrePoke);
             btnPokemon =itemView.findViewById(R.id.btnPokemon);
             etqEnumeracionPoke = itemView.findViewById(R.id.etqEnumeracionPoke);
+            contexto = itemView.getContext();
         }
 
         public void cargarDatos(Pokemon pokemon){
@@ -67,9 +68,12 @@ public class AdaptadorPokemon extends RecyclerView.Adapter<AdaptadorPokemon.View
 
                 public  void onClick(View v){
                     String nombre = pokemon.getNombre();
+                    String url = pokemon.getUrl();
 
                     Intent intencion = new Intent( contexto, DetallePokemon.class );
                     intencion.putExtra("nombre", nombre);
+                    intencion.putExtra("url",url);
+
 
                     contexto.startActivity(intencion);
                 }

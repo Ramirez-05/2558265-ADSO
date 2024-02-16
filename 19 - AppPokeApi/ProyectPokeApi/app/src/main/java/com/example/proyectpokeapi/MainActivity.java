@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,22 +29,24 @@ public class MainActivity extends AppCompatActivity {
     List<Pokemon> listaPokemones;
     RecyclerView recyclerPokemones;
 
-    String url;
+    Button btnPrevious,btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listaPokemones = new ArrayList<>();
-        recyclerPokemones = findViewById(R.id.recyclerPokemones);
-        url ="https://pokeapi.co/api/v2/pokemon";
+        recyclerPokemones = findViewById(R.id.recyclerpokemones);
+        btnPrevious = findViewById(R.id.btnPrevious);
+        btnNext = findViewById(R.id.btnNext);
 
-        cargarPokemones(url);
+
+        cargarPokemones("https://pokeapi.co/api/v2/pokemon");
     }
 
-    public void cargarPokemones(String url){
+    public void cargarPokemones(String urlP){
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-
+        String url = validUrl(urlP);
 
         StringRequest solicitud =  new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray results = jsonObject.getJSONArray("results");
 
+                    listaPokemones.clear();
 
                     for (int i = 0; i < results.length(); i++) {
                         JSONObject pokemonJson = results.getJSONObject(i);
@@ -71,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
                     recyclerPokemones.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     AdaptadorPokemon adaptador = new AdaptadorPokemon(listaPokemones);
                     recyclerPokemones.setAdapter(adaptador);
+
+                    String next = jsonObject.getString("next");
+                    String previus = jsonObject.getString("previous");
+
+                    configButtons(previus,next);
 
                 } catch (JSONException e) {
                     System.out.println("Error al procesar la respuesta JSON:");
@@ -100,5 +109,29 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    public void configButtons(String urlPrevious, String urlNext ) {
 
+        btnNext.setEnabled(urlNext.equals("null") ? false : true);
+        if (!urlNext.equals("null")) {
+            btnNext.setOnClickListener((v) -> cargarPokemones(urlNext));
+        }
+
+        btnPrevious.setEnabled(urlPrevious.equals("null") ? false : true);
+        if (!urlPrevious.equals("null")) {
+            btnPrevious.setOnClickListener((v) -> cargarPokemones(urlPrevious));
+        }
+
+    }
+
+    public String validUrl(String url){
+        String regex ="limit=\\d+";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(url);
+        if (matcher.find()){
+            return url.replace(matcher.group(),"limit=20");
+        }else{
+            return url+"?limit=20";
+        }
+    }
 }

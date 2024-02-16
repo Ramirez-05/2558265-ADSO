@@ -25,28 +25,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:orientation="horizontal"
-            >
+            android:padding="15dp">
 
             <TextView
                 android:id="@+id/etqEnumeracionPoke"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0000"
-                android:textStyle="bold"
                 android:layout_marginRight="20dp"
-                >
-            </TextView>
+                android:text="0000"
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/etqNombrePoke"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXXXXXXXXXX"
-                android:textStyle="bold"
-                >
-            </TextView>
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
