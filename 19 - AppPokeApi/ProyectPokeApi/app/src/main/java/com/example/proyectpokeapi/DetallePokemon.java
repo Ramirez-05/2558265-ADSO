@@ -46,9 +46,6 @@ public class DetallePokemon extends AppCompatActivity {
         listaImagesPokemon = new ArrayList<>();
         listahabilidadesPokemon = new ArrayList<>();
 
-        LinearLayoutManager layoutManagerHorizontal = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerImagenes.setLayoutManager(layoutManagerHorizontal);
-
         Bundle datos = getIntent().getExtras();
         nombrePokemon.setText(datos.getString("nombre"));
 
@@ -84,7 +81,7 @@ public class DetallePokemon extends AppCompatActivity {
                     listaImagesPokemon.add(back_default);
                     listaImagesPokemon.add(back_shiny);
 
-                    recyclerImagenes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    recyclerImagenes.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, false));
                     AdaptadorImagesPokemon adaptadorImages = new AdaptadorImagesPokemon(listaImagesPokemon);
                     recyclerImagenes.setAdapter(adaptadorImages);
 
